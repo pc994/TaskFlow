@@ -1,11 +1,30 @@
 {
   "version": 3,
   "targets": {
-    "net7.0": {}
+    "net7.0": {
+      "TaskFlow.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "compile": {
+          "bin/placeholder/TaskFlow.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/TaskFlow.Domain.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "TaskFlow.Domain/1.0.0": {
+      "type": "project",
+      "path": "../TaskFlow.Domain/TaskFlow.Domain.csproj",
+      "msbuildProject": "../TaskFlow.Domain/TaskFlow.Domain.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net7.0": []
+    "net7.0": [
+      "TaskFlow.Domain >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\ciesi\\.nuget\\packages\\": {},
@@ -42,7 +61,11 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\.Dev\\.repos\\TaskFlow\\TaskFlow.Domain\\TaskFlow.Domain.csproj": {
+              "projectPath": "C:\\.Dev\\.repos\\TaskFlow\\TaskFlow.Domain\\TaskFlow.Domain.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

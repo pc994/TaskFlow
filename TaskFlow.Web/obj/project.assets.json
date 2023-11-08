@@ -1301,6 +1301,42 @@
             "rid": "win"
           }
         }
+      },
+      "TaskFlow.Application/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "TaskFlow.Domain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/TaskFlow.Application.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/TaskFlow.Application.dll": {}
+        }
+      },
+      "TaskFlow.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "compile": {
+          "bin/placeholder/TaskFlow.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/TaskFlow.Domain.dll": {}
+        }
+      },
+      "TaskFlow.Infrastructure/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "TaskFlow.Domain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/TaskFlow.Infrastructure.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/TaskFlow.Infrastructure.dll": {}
+        }
       }
     }
   },
@@ -3895,6 +3931,21 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
+    },
+    "TaskFlow.Application/1.0.0": {
+      "type": "project",
+      "path": "../TaskFlow.Application/TaskFlow.Application.csproj",
+      "msbuildProject": "../TaskFlow.Application/TaskFlow.Application.csproj"
+    },
+    "TaskFlow.Domain/1.0.0": {
+      "type": "project",
+      "path": "../TaskFlow.Domain/TaskFlow.Domain.csproj",
+      "msbuildProject": "../TaskFlow.Domain/TaskFlow.Domain.csproj"
+    },
+    "TaskFlow.Infrastructure/1.0.0": {
+      "type": "project",
+      "path": "../TaskFlow.Infrastructure/TaskFlow.Infrastructure.csproj",
+      "msbuildProject": "../TaskFlow.Infrastructure/TaskFlow.Infrastructure.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -3903,7 +3954,9 @@
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 7.0.4",
       "Microsoft.AspNetCore.Identity.UI >= 7.0.4",
       "Microsoft.EntityFrameworkCore.SqlServer >= 7.0.4",
-      "Microsoft.EntityFrameworkCore.Tools >= 7.0.4"
+      "Microsoft.EntityFrameworkCore.Tools >= 7.0.4",
+      "TaskFlow.Application >= 1.0.0",
+      "TaskFlow.Infrastructure >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -3941,7 +3994,14 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\.Dev\\.repos\\TaskFlow\\TaskFlow.Application\\TaskFlow.Application.csproj": {
+              "projectPath": "C:\\.Dev\\.repos\\TaskFlow\\TaskFlow.Application\\TaskFlow.Application.csproj"
+            },
+            "C:\\.Dev\\.repos\\TaskFlow\\TaskFlow.Infrastructure\\TaskFlow.Infrastructure.csproj": {
+              "projectPath": "C:\\.Dev\\.repos\\TaskFlow\\TaskFlow.Infrastructure\\TaskFlow.Infrastructure.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
