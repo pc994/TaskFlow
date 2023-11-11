@@ -30,8 +30,8 @@ namespace TaskFlow.Domain.Model
         public Priority Priority { get; set; }
         //1:n
         public ICollection<Comment> Comments { get; set; }
-        //m:n (1:n)
-        public ICollection<TaskTag> TaskTag { get; set; }
+        //m:n (2x1:n)
+        public ICollection<TaskTag> TaskTags { get; set; }
 
     }
 }

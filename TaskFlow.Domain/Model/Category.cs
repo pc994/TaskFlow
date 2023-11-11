@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace TaskFlow.Domain.Model
 {
-    internal class Category
+    public class Category
     {
+        public int Id { get; set; }
+        public string Naem { get; set; }
+        //1:n
+        public ICollection<Task> Tasks { get; set; }
     }
 }

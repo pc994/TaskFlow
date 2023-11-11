@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace TaskFlow.Domain.Model
 {
-    internal class TaskTag
+    public class TaskTag
     {
+        //m:n (2x1:n) 
+        public int TaskId { get; set; }
+        public Task Task { get; set; }
+        public int TagId { get; set; }
+        public Tag Tag { get; set; }
     }
 }
