@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using TaskFlow.Domain.Interfaces;
 using Task = TaskFlow.Domain.Model.Task;
 
 namespace TaskFlow.Infrastructure.Repositories
 {
-    public class TaskRepository
+    public class TaskRepository : ITaskRepository
     {
         private readonly DbContext _dbContext;
         public TaskRepository(DbContext dbContext)
