@@ -41,7 +41,19 @@ namespace TaskFlow.Infrastructure
                 .WithOne(p => p.Project)
                 .HasForeignKey<ProjectDetail>(fk => fk.ProjectId);
 
+            //n:n
+            modelbuilder.Entity<TaskTag>()
+                .HasKey(tk => new { tk.TaskId, tk.TagId });
 
+            modelbuilder.Entity<TaskTag>()
+                .HasOne<Task>(tk => tk.Task)
+                .WithMany(t => t.TaskTags)
+                .HasForeignKey(tk => tk.TaskId);
+
+            modelbuilder.Entity<TaskTag>()
+                .HasOne<Tag>(tk => tk.Tag)
+                .WithMany(t => t.TaskTags)
+                .HasForeignKey(tk => tk.TagId);
         }
     }
 }
