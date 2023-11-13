@@ -1,0 +1,17 @@
+C:\.Dev\.repos\TaskFlow\TaskFlow.Infrastructure\bin\Debug\net7.0\TaskFlow.Infrastructure.deps.json
+C:\.Dev\.repos\TaskFlow\TaskFlow.Infrastructure\bin\Debug\net7.0\TaskFlow.Infrastructure.runtimeconfig.json
+C:\.Dev\.repos\TaskFlow\TaskFlow.Infrastructure\bin\Debug\net7.0\TaskFlow.Infrastructure.dll
+C:\.Dev\.repos\TaskFlow\TaskFlow.Infrastructure\bin\Debug\net7.0\TaskFlow.Infrastructure.pdb
+C:\.Dev\.repos\TaskFlow\TaskFlow.Infrastructure\bin\Debug\net7.0\TaskFlow.Domain.dll
+C:\.Dev\.repos\TaskFlow\TaskFlow.Infrastructure\bin\Debug\net7.0\TaskFlow.Domain.pdb
+C:\.Dev\.repos\TaskFlow\TaskFlow.Infrastructure\obj\Debug\net7.0\TaskFlow.Infrastructure.csproj.AssemblyReference.cache
+C:\.Dev\.repos\TaskFlow\TaskFlow.Infrastructure\obj\Debug\net7.0\TaskFlow.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\.Dev\.repos\TaskFlow\TaskFlow.Infrastructure\obj\Debug\net7.0\TaskFlow.Infrastructure.AssemblyInfoInputs.cache
+C:\.Dev\.repos\TaskFlow\TaskFlow.Infrastructure\obj\Debug\net7.0\TaskFlow.Infrastructure.AssemblyInfo.cs
+C:\.Dev\.repos\TaskFlow\TaskFlow.Infrastructure\obj\Debug\net7.0\TaskFlow.Infrastructure.csproj.CoreCompileInputs.cache
+C:\.Dev\.repos\TaskFlow\TaskFlow.Infrastructure\obj\Debug\net7.0\TaskFlow.Infrastructure.csproj.CopyComplete
+C:\.Dev\.repos\TaskFlow\TaskFlow.Infrastructure\obj\Debug\net7.0\TaskFlow.Infrastructure.dll
+C:\.Dev\.repos\TaskFlow\TaskFlow.Infrastructure\obj\Debug\net7.0\refint\TaskFlow.Infrastructure.dll
+C:\.Dev\.repos\TaskFlow\TaskFlow.Infrastructure\obj\Debug\net7.0\TaskFlow.Infrastructure.pdb
+C:\.Dev\.repos\TaskFlow\TaskFlow.Infrastructure\obj\Debug\net7.0\TaskFlow.Infrastructure.genruntimeconfig.cache
+C:\.Dev\.repos\TaskFlow\TaskFlow.Infrastructure\obj\Debug\net7.0\ref\TaskFlow.Infrastructure.dll

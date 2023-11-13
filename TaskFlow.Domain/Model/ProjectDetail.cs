@@ -13,8 +13,8 @@ namespace TaskFlow.Domain.Model
         public string City { get; set; }
         public string CEOName { get; set; }
         public string ZipCode { get; set; }
-        public DateOnly StartProject { get; set; }  
-        public DateOnly EndProject { get; set; }
+        public DateTime StartProject { get; set; }  
+        public DateTime EndProject { get; set; }
         //1:1
         public int ProjectId { get; set;}
         //1:1

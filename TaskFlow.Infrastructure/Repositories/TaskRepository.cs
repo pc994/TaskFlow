@@ -9,8 +9,8 @@ namespace TaskFlow.Infrastructure.Repositories
 {
     public class TaskRepository : ITaskRepository
     {
-        private readonly DbContext _dbContext;
-        public TaskRepository(DbContext dbContext)
+        private readonly Context _dbContext;
+        public TaskRepository(Context dbContext)
         {
             _dbContext = dbContext;
         }

@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TaskFlow.Domain.Interfaces;
 using TaskFlow.Domain.Model;
 
 namespace TaskFlow.Infrastructure.Repositories
 {
-    public class ProjectRepository
+    public class ProjectRepository : IProjectRepository
     {
-        private readonly DbContext _dbContext;
-        public ProjectRepository(DbContext dbContext)
+        private readonly Context _dbContext;
+        public ProjectRepository(Context dbContext)
         {
             _dbContext = dbContext;
         }

@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TaskFlow.Domain.Model;
 
 namespace TaskFlow.Domain.Interfaces
 {
-    internal interface IProjectRepository
+    public interface IProjectRepository
     {
+        int Add(Project project);
     }
 }
