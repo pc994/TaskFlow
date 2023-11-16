@@ -1,8 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "NtsG1HktJTh8a3vPV75i4rETe75qJDVzfuPfgc0WUrjdbxcjgafA4UyVV6sibeZVTo6D2Xrbf213aXU3gZEXzA==",
+  "dgSpecHash": "hE2kDT1gKZ/JdQSU7wcitqao9Z0/jJbRSYXW0y98xW1H3+kTlpzCOmwXD9aBkV+KksRtOK+lFrxrYCDIPgxPEA==",
   "success": true,
   "projectFilePath": "C:\\.Dev\\.repos\\TaskFlow\\TaskFlow.Application\\TaskFlow.Application.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\ciesi\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
+    "C:\\Users\\ciesi\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
+    "C:\\Users\\ciesi\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
+    "C:\\Users\\ciesi\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\6.0.0\\microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512",
+    "C:\\Users\\ciesi\\.nuget\\packages\\microsoft.extensions.options\\6.0.0\\microsoft.extensions.options.6.0.0.nupkg.sha512",
+    "C:\\Users\\ciesi\\.nuget\\packages\\microsoft.extensions.primitives\\6.0.0\\microsoft.extensions.primitives.6.0.0.nupkg.sha512",
+    "C:\\Users\\ciesi\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
+  ],
   "logs": []
 }

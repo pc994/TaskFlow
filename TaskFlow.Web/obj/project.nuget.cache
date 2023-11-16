@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "bIDAp4fJWtkiO0MqKwJyIgG+aWrFk7pvK/S7vhDWv4lx3x+SVagDXwfX2Mkn/SQ2+Ppksttc4ZUWeY08yLn8xQ==",
+  "dgSpecHash": "AaYsXTq2IesVnVZs0WJt8SVVdUyPx2ueNsbvXwzfOjEn4PMGCIoQRQrFE3qRFcsCyiqSHy0u+VVMbeJzzhXBvA==",
   "success": true,
   "projectFilePath": "C:\\.Dev\\.repos\\TaskFlow\\TaskFlow.Web\\TaskFlow.Web.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\ciesi\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
+    "C:\\Users\\ciesi\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
     "C:\\Users\\ciesi\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\ciesi\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
     "C:\\Users\\ciesi\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
@@ -13,7 +15,7 @@
     "C:\\Users\\ciesi\\.nuget\\packages\\microsoft.aspnetcore.identity.entityframeworkcore\\7.0.4\\microsoft.aspnetcore.identity.entityframeworkcore.7.0.4.nupkg.sha512",
     "C:\\Users\\ciesi\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\7.0.4\\microsoft.aspnetcore.identity.ui.7.0.4.nupkg.sha512",
     "C:\\Users\\ciesi\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
-    "C:\\Users\\ciesi\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
+    "C:\\Users\\ciesi\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\ciesi\\.nuget\\packages\\microsoft.data.sqlclient\\5.0.1\\microsoft.data.sqlclient.5.0.1.nupkg.sha512",
     "C:\\Users\\ciesi\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\5.0.1\\microsoft.data.sqlclient.sni.runtime.5.0.1.nupkg.sha512",
     "C:\\Users\\ciesi\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.4\\microsoft.entityframeworkcore.7.0.4.nupkg.sha512",

@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace TaskFlow.Application.ViewModels.Task
 {
-    internal class ListTaskForListVm
+    public class ListTaskForListVm
     {
+        public List<TaskForListVm> Tasks { get; set; }
+        public int Count { get; set; }
     }
 }

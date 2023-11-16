@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TaskFlow.Application.ViewModels.Task
 {
-    internal class UpdateTaskVm
+    public class UpdateTaskVm
     {
     }
 }

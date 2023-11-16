@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace TaskFlow.Application.ViewModels.Task
 {
-    internal class TaskDetailsVm
+    public class TaskDetailsVm
     {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
     }
 }
