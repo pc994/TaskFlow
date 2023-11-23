@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +15,7 @@ namespace TaskFlow.Application.Services
     public class TaskService : ITaskService
     {
         private readonly ITaskRepository _taskRepository;
+        private readonly IMapper _mapper;
         public int AddTask(AddTaskVm addTaskVm)
         {
             throw new NotImplementedException();
@@ -20,25 +23,13 @@ namespace TaskFlow.Application.Services
 
         public ListTaskForListVm GetAllTasksForList()
         {
-            var tasks = _taskRepository.GetAll();
-            ListTaskForListVm tasksForListVm = new ListTaskForListVm();
-            tasksForListVm.Tasks = new List<TaskForListVm>();
-            foreach (var task in tasks)
+            var tasks = _taskRepository.GetAll().ProjectTo<TaskForListVm>(_mapper.ConfigurationProvider).ToList();
+            var taskList = new ListTaskForListVm()
             {
-                var taskVm = new TaskForListVm()
-                {
-                    Id = task.Id,
-                    Name = task.Name,
-                    Category = "Category",
-                    Status = "Status",
-                    Priority = "Priority",
-                    AssignedTo = "AssignedTo",
-                    Project = "ProjectName"
-                };
-                tasksForListVm.Tasks.Add(taskVm);
-            }
-            tasksForListVm.Count = tasksForListVm.Tasks.Count;
-            return tasksForListVm;
+                Tasks = tasks,
+                Count = tasks.Count
+            };
+            return taskList; 
         }
 
         public TaskDetailsVm GetTaskDetails(int taskId)

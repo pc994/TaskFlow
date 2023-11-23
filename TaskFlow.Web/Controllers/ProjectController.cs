@@ -8,5 +8,15 @@ namespace TaskFlow.Web.Controllers
         {
             return View();
         }
+        
+        public IActionResult Add()
+        {
+            return View();
+        }
+
+        public IActionResult Edit(int projectId)
+        {
+            return View();
+        }
     }
 }

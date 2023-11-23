@@ -75,15 +75,8 @@ namespace TaskFlow.Infrastructure.Repositories
 
         public IQueryable<Task> GetPublicOrPrivateTasks(bool isPublic)
         {
-            if(isPublic)
-            {
-                var tasks = _dbContext.Tasks.Where(t => t.IsPublic == true);
-                return tasks;
-            }else
-            {
-                var tasks = _dbContext.Tasks.Where(t => t.IsPublic == false);
-                return tasks;
-            }
+            var tasks = _dbContext.Tasks.Where(t => t.IsPublic == isPublic);
+            return tasks;
         }
     }
 }
