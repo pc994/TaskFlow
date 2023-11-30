@@ -10,5 +10,6 @@ namespace TaskFlow.Domain.Interfaces
     public interface IProjectRepository
     {
         int Add(Project project);
+        public IQueryable<Project> GetAllActiveProjects();
     }
 }

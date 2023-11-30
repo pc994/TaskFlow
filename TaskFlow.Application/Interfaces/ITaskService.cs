@@ -11,6 +11,9 @@ namespace TaskFlow.Application.Interfaces
     {
         ListTaskForListVm GetAllTasksForList();
         int AddTask(AddTaskVm addTaskVm);
+        AddTaskVm AddTaskView();
         TaskDetailsVm GetTaskDetails(int taskId);
+        List<TaskCategoriesForListVm> GetTaskCategories();
+        List<TaskPrioritiesForListVm> GetTaskPriorities();
     }
 }

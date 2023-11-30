@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using TaskFlow.Domain.Model;
 using Task = TaskFlow.Domain.Model.Task;
 
 namespace TaskFlow.Domain.Interfaces
 {
     public interface ITaskRepository
     {
-        int Add(Task task);
+        int AddTask(Task task);
 
         void Delete(int taskId);
 
@@ -27,5 +28,9 @@ namespace TaskFlow.Domain.Interfaces
         IQueryable<Task> GetTaskByProjectId(int projectId);
 
         IQueryable<Task> GetPublicOrPrivateTasks(bool isPublic);
+        IQueryable<Category> GetAllTaskCategories();
+        IQueryable<Priority> GetAllTaskPriorities();
+
+        int GetTaskCategoryIdByName(string name);
     }
 }

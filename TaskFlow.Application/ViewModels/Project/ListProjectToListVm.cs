@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace TaskFlow.Application.ViewModels.Project
 {
-    internal class ListProjectToListVm
+    public class ListProjectToListVm
     {
+        public List<ProjectForListVm> Projects { get; set; }
+        public int Count { get; set; }
     }
 }

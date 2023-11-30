@@ -21,5 +21,10 @@ namespace TaskFlow.Infrastructure.Repositories
             _dbContext.Projects.Add(project);
             return project.Id;
         }
+
+        public IQueryable<Project> GetAllActiveProjects()
+        {
+            return _dbContext.Projects.Where(p => p.IsActive == true);
+        }
     }
 }

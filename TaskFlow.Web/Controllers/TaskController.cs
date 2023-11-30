@@ -1,12 +1,19 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using TaskFlow.Application.Interfaces;
 using TaskFlow.Application.Services;
+using TaskFlow.Application.ViewModels.Task;
 using TaskFlow.Domain.Model;
 
 namespace TaskFlow.Web.Controllers
 {
     public class TaskController : Controller
     {
-        private readonly TaskService _taskService;
+        private readonly ITaskService _taskService;
+
+        public TaskController(ITaskService taskService)
+        {
+            _taskService = taskService;
+        }
         public IActionResult Index()
         {
             var model = _taskService.GetAllTasksForList(); 
@@ -21,13 +28,14 @@ namespace TaskFlow.Web.Controllers
         [HttpGet]
         public IActionResult AddTask()
         {
-            return View();
+            var model = _taskService.AddTaskView();
+            return View(model);
         }
         [HttpPost]
-        public IActionResult AddTask(TaskModel taskModel)
+        public IActionResult AddTask(AddTaskVm taskModel)
         {
             var id = _taskService.AddTask(taskModel);
-            return View();
+            return RedirectToAction("Index");
         }
 
         public IActionResult Delete()

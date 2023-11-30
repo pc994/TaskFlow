@@ -13,11 +13,13 @@ namespace TaskFlow.Application.ViewModels.Task
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Status { get; set; }
-        public string Category { get; set; }
-        public string Priority { get; set; }
-        public string Project { get; set; }
-        public string AssignedTo { get; set; } 
+        public string Description { get; set; }
+        public int StatusId { get; set; }
+        public int CategoryId { get; set; }
+        public int PriorityId { get; set; }
+        public bool IsPublic { get; set; } = true;
+        public int ProjectId { get; set; }
+        public int AssignedToId { get; set; }
 
         public void Mapping(Profile profile)
         {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using TaskFlow.Domain.Interfaces;
+using TaskFlow.Domain.Model;
 using Task = TaskFlow.Domain.Model.Task;
 
 namespace TaskFlow.Infrastructure.Repositories
@@ -15,8 +16,10 @@ namespace TaskFlow.Infrastructure.Repositories
             _dbContext = dbContext;
         }
 
-        public int Add(Task task)
+        public int AddTask(Task task)
         {
+            task.StatusId = 1;
+            task.ProjectId = 1;
             _dbContext.Tasks.Add(task);
             _dbContext.SaveChanges();
             return task.Id;
@@ -77,6 +80,25 @@ namespace TaskFlow.Infrastructure.Repositories
         {
             var tasks = _dbContext.Tasks.Where(t => t.IsPublic == isPublic);
             return tasks;
+        }
+
+        public IQueryable<Category> GetAllTaskCategories()
+        {
+            var categories = _dbContext.Categories;
+            return categories;
+        }
+        public IQueryable<Priority> GetAllTaskPriorities()
+        {
+            var priorities = _dbContext.Priorities;
+            return priorities;
+        }
+
+        public int GetTaskCategoryIdByName(string name)
+        {
+            var id = _dbContext.Categories.Where(c => c.Name == name).Select(c => c.Id).ToString();
+            int idd;
+            Int32.TryParse(id, out idd);
+            return idd;
         }
     }
 }

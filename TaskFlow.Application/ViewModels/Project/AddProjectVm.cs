@@ -6,7 +6,16 @@ using System.Threading.Tasks;
 
 namespace TaskFlow.Application.ViewModels.Project
 {
-    internal class AddProjectVm
+    public class AddProjectVm
     {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public bool IsActive { get; set; }
+        public string CompanyName { get; set; }
+        public string City { get; set; }
+        public string CEOName { get; set; }
+        public string ZipCode { get; set; }
+        public DateTime StartProject { get; set; }
+
     }
 }
