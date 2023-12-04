@@ -19,7 +19,7 @@ namespace TaskFlow.Web.Controllers
             var model = _taskService.GetAllTasksForList(); 
             return View(model);
         }
-
+        [HttpGet]
         public IActionResult ViewTaskDetails(int taskId)
         {
             var model = _taskService.GetTaskDetails(taskId);
@@ -37,14 +37,21 @@ namespace TaskFlow.Web.Controllers
             var id = _taskService.AddTask(taskModel);
             return RedirectToAction("Index");
         }
-
-        public IActionResult Delete()
+        public IActionResult Remove(int taskId)
         {
-            return View();  
+            _taskService.RemoveTask(taskId);
+            return RedirectToAction("Index");
         }
-        public IActionResult Edit(int taskId) 
+        //[HttpGet]
+        //public IActionResult EditTask(int taskId) 
+        //{
+        //    var taskToEdit = _taskService.GetTaskForEdit(taskId);
+        //    return View(taskToEdit); 
+        //}
+        [HttpPost]
+        public IActionResult EditTask(AddTaskVm taskModel)
         {
-            return View(); 
-        }  
+            return View();
+        }
     }
 }

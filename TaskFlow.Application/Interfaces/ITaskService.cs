@@ -15,5 +15,6 @@ namespace TaskFlow.Application.Interfaces
         TaskDetailsVm GetTaskDetails(int taskId);
         List<TaskCategoriesForListVm> GetTaskCategories();
         List<TaskPrioritiesForListVm> GetTaskPriorities();
+        void RemoveTask(int taskId);
     }
 }

@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
+using FluentValidation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using TaskFlow.Application.Mapping;
@@ -29,5 +31,14 @@ namespace TaskFlow.Application.ViewModels.Task
             profile.CreateMap< AddTaskVm, TaskFlow.Domain.Model.Task>();
         }
 
+        public class AddTaskValidation : AbstractValidator<AddTaskVm>
+        {
+            public AddTaskValidation()
+            {
+                RuleFor(x => x.Id).NotNull();
+                RuleFor(x => x.Name).Length(1,50);
+                RuleFor(x => x.Description).NotNull();
+            } 
+        }
     }
 }

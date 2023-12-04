@@ -32,5 +32,7 @@ namespace TaskFlow.Domain.Interfaces
         IQueryable<Priority> GetAllTaskPriorities();
 
         int GetTaskCategoryIdByName(string name);
+
+
     }
 }

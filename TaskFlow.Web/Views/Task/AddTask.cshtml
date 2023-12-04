@@ -4,19 +4,15 @@
     ViewData["Title"] = "AddTask";
 }
 
-<h1>AddTask</h1>
+<h1>New task</h1>
 
-<h4>AddTaskVm</h4>
+<h4>Add task details</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="AddTask">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-@*            <div class="form-group">
-                <label asp-for="Id" class="control-label"></label>
-                <input asp-for="Id" class="form-control" />
-                <span asp-validation-for="Id" class="text-danger"></span>
-            </div>*@
+                <input asp-for="Id" type="hidden" />
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
                 <input asp-for="Name" class="form-control" />
@@ -53,8 +49,7 @@
                 </label>
             </div>
             <div class="form-group">
-                <label asp-for="Projects">Select Priority:</label>
-
+                <label asp-for="Projects">Select project:</label>
                 <select name="ProjectId">
                     @foreach (var priorities in Model.Projects)
                     {
@@ -62,11 +57,12 @@
                     }
                 </select>
             </div>
-            <div class="form-group">
+            @* \/ TO BE IMPLEMENTED AFTER ADDING USER CONFIGURATION \/*@
+  @*          <div class="form-group">
                 <label asp-for="AssignedTo" class="control-label"></label>
-                <input asp-for="AssignedTo" class="form-control" />
+                <input asp-for="AssignedTo" class="form-control" disabled/>
                 <span asp-validation-for="AssignedTo" class="text-danger"></span>
-            </div>
+            </div>*@
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>

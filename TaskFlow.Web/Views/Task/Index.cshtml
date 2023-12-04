@@ -7,7 +7,7 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="AddTask">Create New</a>
 </p>
 <table class="table">
     <thead>
@@ -16,30 +16,30 @@
                 Id
             </th>
             <th>
-                Nazwa
+                Name
             </th>
             <th>
-                Kategoria
+                Category
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Tasks) {
+@foreach (var task in Model.Tasks) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Id)
+                    @Html.DisplayFor(modelItem => task.Id)
             </td>
              <td>
-                @Html.DisplayFor(modelItem => item.Name)
+                    @Html.DisplayFor(modelItem => task.Name)
             </td>
              <td>
-                @Html.DisplayFor(modelItem => item.CategoryId)
+                    @Html.DisplayFor(modelItem => task.CategoryId)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                    @Html.ActionLink("Edit", "Edit", new {  taskId = task.Id }) |
+                    @Html.ActionLink("Details", "ViewTaskDetails", new {  taskId = task.Id }) |
+                    @Html.ActionLink("Remove", "Remove", new { taskId = task.Id })
             </td>
         </tr>
 }

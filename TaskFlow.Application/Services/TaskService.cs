@@ -73,5 +73,16 @@ namespace TaskFlow.Application.Services
 
             return priorities;
         }
+
+        public void RemoveTask(int taskId)
+        {
+            _taskRepository.Delete(taskId);
+        }
+
+        //        public AddTaskVm GetTaskForEdit(int taskId)
+        //        {
+        //            _taskRepository.UpdateTask(taskId);
+
+        //        }
     }
 }
