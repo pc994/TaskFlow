@@ -1,8 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 using TaskFlow.Application.Interfaces;
 using TaskFlow.Application.Services;
+using TaskFlow.Application.ViewModels.Comment;
 using TaskFlow.Application.ViewModels.Task;
 using TaskFlow.Domain.Model;
+using static TaskFlow.Application.ViewModels.Comment.AddCommentVm;
 
 namespace TaskFlow.Web.Controllers
 {
@@ -34,8 +37,31 @@ namespace TaskFlow.Web.Controllers
         [HttpPost]
         public IActionResult AddTask(AddTaskVm taskModel)
         {
-            var id = _taskService.AddTask(taskModel);
-            return RedirectToAction("Index");
+            var taskId = _taskService.AddTask(taskModel);
+            return RedirectToAction("ViewTaskDetails", new { taskId = taskId });
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult AddComment(AddCommentVm addComment)
+        {
+            //AddCommentValidation validator = new AddCommentValidation();
+            //var validationResult = validator.Validate(addComment);
+            //if (!validationResult.IsValid)
+            //{
+            //    // Obsługa błędów walidacji, np. dodanie błędów do ModelState.
+            //    foreach (var error in validationResult.Errors)
+            //    {
+            //        ModelState.AddModelError(error.PropertyName, error.ErrorMessage);
+            //    }
+
+            //    // Przekierowanie z powrotem do widoku z błędami.
+            //    return View(ViewTaskDetails(1));
+
+
+            //}
+
+            var taskId = _taskService.AddComment(addComment);
+            return RedirectToAction("ViewTaskDetails",new {taskId = taskId});
         }
         public IActionResult Remove(int taskId)
         {
@@ -48,10 +74,25 @@ namespace TaskFlow.Web.Controllers
         //    var taskToEdit = _taskService.GetTaskForEdit(taskId);
         //    return View(taskToEdit); 
         //}
+        [HttpGet]
+        public IActionResult EditTask(int taskId)
+        {
+            var model = _taskService.EditTaskView(taskId);
+              
+            return View(model);
+        }
         [HttpPost]
         public IActionResult EditTask(AddTaskVm taskModel)
         {
-            return View();
+            var taskId = _taskService.UpdateTask(taskModel);
+
+            return RedirectToAction("ViewTaskDetails", new { taskId = taskId });
+        }
+        [HttpPost]
+        public IActionResult UpdateStatus(int taskId, int statusId)
+        {
+            _taskService.UpdateStatus(taskId, statusId);
+            return RedirectToAction("ViewTaskDetails", new { taskId = taskId });
         }
     }
 }

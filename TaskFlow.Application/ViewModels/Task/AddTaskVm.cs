@@ -23,7 +23,9 @@ namespace TaskFlow.Application.ViewModels.Task
         public List<TaskPrioritiesForListVm> Priorities { get; set; }
         public bool IsPublic { get; set; } = true;
         public int ProjectId { get; set; }
+        public int StatusId { get; set; }
         public List<ProjectForListVm> Projects { get; set; }
+        public List<TaskStatusesForListVm> Statuses { get; set; }
         public string AssignedTo { get; set; }
 
         public void Mapping(Profile profile)

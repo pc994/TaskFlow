@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace TaskFlow.Domain.Model
 {
@@ -14,6 +13,6 @@ namespace TaskFlow.Domain.Model
         //1:1
         public ProjectDetail ProjectDetail { get; set; }
         //1:n
-        public virtual ICollection<Task> Tasks { get; set; }
+        public ICollection<Task> Tasks { get; set; }
     }
 }

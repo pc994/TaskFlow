@@ -20,3 +20,10 @@ html {
 body {
   margin-bottom: 60px;
 }
+.btn-update {
+    color: white;
+    background-color: #ee6300;
+    border: none;
+    border-radius:2px;
+    position: relative;
+}

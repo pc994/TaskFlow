@@ -30,9 +30,15 @@ namespace TaskFlow.Domain.Interfaces
         IQueryable<Task> GetPublicOrPrivateTasks(bool isPublic);
         IQueryable<Category> GetAllTaskCategories();
         IQueryable<Priority> GetAllTaskPriorities();
+        IQueryable<Status> GetAllTaskStatuses();
 
         int GetTaskCategoryIdByName(string name);
 
-
+        string GetTaskStatusNameByStatusId(int id);
+        void AddComment(Comment comment);
+        void UpdatePriority(int taskId, int priorityId);
+        void UpdateStatus(int taskId, int statusId);
+        void UpdateCategory(int taskId, int categoryId);
+        int UpdateTask(Task task);
     }
 }

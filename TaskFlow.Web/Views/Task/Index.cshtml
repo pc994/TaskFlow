@@ -21,6 +21,12 @@
             <th>
                 Category
             </th>
+            <th>
+                Priority
+            </th>
+            <th>
+                Status
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -31,13 +37,20 @@
                     @Html.DisplayFor(modelItem => task.Id)
             </td>
              <td>
-                    @Html.DisplayFor(modelItem => task.Name)
+                    @*@Html.DisplayFor(modelItem => task.Name)*@
+                    @Html.ActionLink(task.Name, "ViewTaskDetails", "Task", new { taskId = task.Id }, null)
             </td>
              <td>
-                    @Html.DisplayFor(modelItem => task.CategoryId)
+                    @Html.DisplayFor(modelItem => task.Category.Name)
+            </td>          
+            <td>
+                    @Html.DisplayFor(modelItem => task.Priority.Name)
+            </td>    
+            <td>
+                    @Html.DisplayFor(modelItem => task.Status.Name)
             </td>
             <td>
-                    @Html.ActionLink("Edit", "Edit", new {  taskId = task.Id }) |
+                    @Html.ActionLink("Edit", "EditTask", new {  taskId = task.Id }) |
                     @Html.ActionLink("Details", "ViewTaskDetails", new {  taskId = task.Id }) |
                     @Html.ActionLink("Remove", "Remove", new { taskId = task.Id })
             </td>

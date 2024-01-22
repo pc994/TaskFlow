@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,8 +19,6 @@ namespace TaskFlow.Infrastructure.Repositories
 
         public int AddTask(Task task)
         {
-            task.StatusId = 1;
-            task.ProjectId = 1;
             _dbContext.Tasks.Add(task);
             _dbContext.SaveChanges();
             return task.Id;
@@ -37,12 +36,21 @@ namespace TaskFlow.Infrastructure.Repositories
 
         public IQueryable<Task> GetAll()
         {
-            return _dbContext.Tasks;
+            return _dbContext.Tasks
+                .Include(t=>t.Category)
+                .Include(t=>t.Status)
+                .Include(t=>t.Priority);
         }
 
         public Task GetTaskById(int taskId) 
         {
-            var task = _dbContext.Tasks.FirstOrDefault(t => t.Id == taskId);
+            var task = _dbContext.Tasks
+                .Include(t=>t.Category)
+                .Include(t=>t.Status)
+                .Include(t=>t.Priority)
+                .Include(t=>t.Project)
+                .Include(t=>t.Comments)
+                .FirstOrDefault(t=>t.Id == taskId);
             return task;
         }
 
@@ -92,13 +100,67 @@ namespace TaskFlow.Infrastructure.Repositories
             var priorities = _dbContext.Priorities;
             return priorities;
         }
-
+        public IQueryable<Status> GetAllTaskStatuses()
+        {
+            var statuses = _dbContext.Statuses;
+            return statuses;
+        }
         public int GetTaskCategoryIdByName(string name)
         {
             var id = _dbContext.Categories.Where(c => c.Name == name).Select(c => c.Id).ToString();
             int idd;
             Int32.TryParse(id, out idd);
             return idd;
+        }
+
+        public string GetTaskStatusNameByStatusId(int id)
+        {
+            var statusName = _dbContext.Statuses.FirstOrDefault(s => s.Id == id).Name;
+            return statusName;
+        }
+
+        public void AddComment(Comment comment)
+        {
+            _dbContext.Comments.Add(comment);
+            _dbContext.SaveChanges();
+
+        }
+
+        public void UpdatePriority(int taskId, int priorityId)
+        {
+            var task = _dbContext.Tasks.FirstOrDefault(t => t.Id == taskId );
+            if (task != null)
+            {
+                task.PriorityId = priorityId;
+            }
+            _dbContext.SaveChanges();
+        }
+
+        public void UpdateStatus(int taskId, int statusId)
+        {
+            var task = _dbContext.Tasks.FirstOrDefault(t => t.Id == taskId);
+            if (task != null)
+            {
+                task.StatusId = statusId;
+            }
+            _dbContext.SaveChanges();
+        }
+
+        public void UpdateCategory(int taskId, int categoryId)
+        {
+            var task = _dbContext.Tasks.FirstOrDefault(t => t.Id == taskId);
+            if (task != null)
+            {
+                task.CategoryId = categoryId;
+            }
+            _dbContext.SaveChanges(); ;
+        }
+
+        public int UpdateTask(Task task)
+        {
+            _dbContext.Tasks.Update(task);
+            _dbContext.SaveChanges();
+            return task.Id;
         }
     }
 }

@@ -21,7 +21,7 @@ namespace TaskFlow.Domain.Model
         //1:1
         public TaskAuditableModel TaskAuditableModel  { get; set; }
         //1:n
-        public virtual Project Project { get; set; }
+        public Project Project { get; set; }
         //1:n
         public Status Status { get; set; }
         //1:n

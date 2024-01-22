@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TaskFlow.Infrastructure;
 
@@ -11,9 +12,11 @@ using TaskFlow.Infrastructure;
 namespace TaskFlow.Infrastructure.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20231205222600_update project entity")]
+    partial class updateprojectentity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -239,28 +242,6 @@ namespace TaskFlow.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Software"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Hardware"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Permission"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Name = "Other"
-                        });
                 });
 
             modelBuilder.Entity("TaskFlow.Domain.Model.Comment", b =>
@@ -315,28 +296,6 @@ namespace TaskFlow.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Priorities");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Low"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Normal"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "High"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Name = "INSTANT"
-                        });
                 });
 
             modelBuilder.Entity("TaskFlow.Domain.Model.Project", b =>
@@ -357,14 +316,6 @@ namespace TaskFlow.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Projects");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            IsActive = true,
-                            Name = "Corp"
-                        });
                 });
 
             modelBuilder.Entity("TaskFlow.Domain.Model.ProjectDetail", b =>
@@ -423,28 +374,6 @@ namespace TaskFlow.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Statuses");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "New"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "In progress"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Suspensed"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Name = "Completed"
-                        });
                 });
 
             modelBuilder.Entity("TaskFlow.Domain.Model.Tag", b =>

@@ -4,8 +4,10 @@
     ViewData["Title"] = "ViewTaskDetails";
 }
 
+<h1>ViewTaskDetails</h1>
+
 <div>
-    <h4>Task details</h4>
+    <h4>TaskDetailsVm</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -26,9 +28,88 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Description)
         </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+        <dd class = "col-sm-2">
+            @Html.DisplayFor(model => model.Status.Name)
+        </dd>
+        <dd class="col-sm-8">
+            <form asp-action="UpdateStatus">
+                @*         <label asp-for="Priority">Change Priority:</label>*@
+                <select name="statusId">
+                    @foreach (var status in Model.Statuses)
+                    {
+                        <option value="@status.Id">@status.Name</option>
+                    }
+                </select>
+                <input type="hidden" name="taskId" value="@Model.Id" />
+                <button type="submit" class="btn-update">Update</button>
+
+            </form>
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Category)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Category.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Priority)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Priority.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IsPublic)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IsPublic)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ProjectId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Project.Name)
+        </dd>
     </dl>
 </div>
 <div>
-    @Html.ActionLink("Edit", "Edit", new { taskId = Model.Id }) |
+
+    <label asp-for="Comments">Comments</label>
+        @foreach (var comment in Model.Comments)
+        {
+        <p>
+           <dt class="col-sm-2">
+                @comment.CreatedDate 
+           </dt>
+           <dd class="col-sm-10">
+                @comment.Content
+        </dd>
+        </p>
+        <hr />
+        }
+    <form asp-action="AddComment">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <input type="hidden" asp-for="AddComment.TaskId" value="@Model.Id"/>
+
+        <div class="form-group">
+            <label asp-for="AddComment.Content">Add comment:</label>
+            <textarea asp-for="AddComment.Content" class="form-control" rows="4"></textarea>
+            <span asp-validation-for="AddComment.Content" class="text-danger"></span>
+            
+       
+        <button type="submit" class="btn btn-primary">Add Comment</button>
+        </div>
+
+    </form>
+
+    @Html.ActionLink("Edit", "EditTask", new { taskId = Model.Id }) |
     <a asp-action="Index">Back to List</a>
 </div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

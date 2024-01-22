@@ -30,6 +30,29 @@ namespace TaskFlow.Infrastructure
         }
         protected override void OnModelCreating(ModelBuilder modelbuilder)
         {
+            //seed data
+            var category1 = new Category() { Id = 1, Name = "Software" };
+            var category2 = new Category() { Id = 2, Name = "Hardware" };
+            var category3 = new Category() { Id = 3, Name = "Permission" };
+            var category4 = new Category() { Id = 4, Name = "Other" };
+
+            var status1 = new Status() { Id = 1, Name = "New" };
+            var status2 = new Status() { Id = 2, Name = "In progress" };
+            var status3 = new Status() { Id = 3, Name = "Suspensed" };
+            var status4 = new Status() { Id = 4, Name = "Completed" };
+
+            var priority1 = new Priority() { Id = 1, Name = "Low" };
+            var priority2 = new Priority() { Id = 2, Name = "Normal" };
+            var priority3 = new Priority() { Id = 3, Name = "High" };
+            var priority4 = new Priority() { Id = 4, Name = "INSTANT" };
+
+            var testProject = new Project() { Id = 1, Name = "Corp", IsActive = true };
+
+            modelbuilder.Entity<Category>().HasData(category1, category2, category3, category4);
+            modelbuilder.Entity<Status>().HasData(status1, status2, status3, status4);
+            modelbuilder.Entity<Priority>().HasData(priority1, priority2, priority3, priority4);
+            modelbuilder.Entity<Project>().HasData(testProject);
+
             base.OnModelCreating(modelbuilder);
             //1:1
             modelbuilder.Entity<Task>()
@@ -56,6 +79,8 @@ namespace TaskFlow.Infrastructure
                 .WithMany(t => t.TaskTags)
                 .HasForeignKey(tk => tk.TagId);
 
+
+            
         }
     }
 }
