@@ -4,10 +4,11 @@
     ViewData["Title"] = "ViewTaskDetails";
 }
 
-<h1>ViewTaskDetails</h1>
 
 <div>
-    <h4>TaskDetailsVm</h4>
+    <h4>
+        @Html.DisplayFor(model => model.Name)
+    </h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -44,7 +45,7 @@
                     }
                 </select>
                 <input type="hidden" name="taskId" value="@Model.Id" />
-                <button type="submit" class="btn-update">Update</button>
+                <button type="submit" class="bDtn-update">Update</button>
 
             </form>
         </dd>

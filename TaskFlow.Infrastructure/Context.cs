@@ -40,6 +40,7 @@ namespace TaskFlow.Infrastructure
             var status2 = new Status() { Id = 2, Name = "In progress" };
             var status3 = new Status() { Id = 3, Name = "Suspensed" };
             var status4 = new Status() { Id = 4, Name = "Completed" };
+            var status5 = new Status() { Id = 5, Name = "Closed" };
 
             var priority1 = new Priority() { Id = 1, Name = "Low" };
             var priority2 = new Priority() { Id = 2, Name = "Normal" };
@@ -49,7 +50,7 @@ namespace TaskFlow.Infrastructure
             var testProject = new Project() { Id = 1, Name = "Corp", IsActive = true };
 
             modelbuilder.Entity<Category>().HasData(category1, category2, category3, category4);
-            modelbuilder.Entity<Status>().HasData(status1, status2, status3, status4);
+            modelbuilder.Entity<Status>().HasData(status1, status2, status3, status4, status5);
             modelbuilder.Entity<Priority>().HasData(priority1, priority2, priority3, priority4);
             modelbuilder.Entity<Project>().HasData(testProject);
 
