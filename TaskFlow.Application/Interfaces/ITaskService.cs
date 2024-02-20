@@ -11,17 +11,15 @@ namespace TaskFlow.Application.Interfaces
     public interface ITaskService
     {
         ListTaskForListVm GetAllTasksForList();
+        ListTaskForListVm GetAllActiveTasksForList(int pageSize, int pageNo, string searchString, TaskFiltersVm taskFiltersVm);
         int AddTask(AddTaskVm addTaskVm);
         AddTaskVm AddTaskView();
         TaskDetailsVm GetTaskDetails(int taskId);
-        //List<TaskCategoriesForListVm> GetTaskCategories();
-        //List<TaskPrioritiesForListVm> GetTaskPriorities();
-        void RemoveTask(int taskId);
+        List<TViewModel> GetParameters<T, TViewModel>() where T : class;
         int AddComment(AddCommentVm addCommentVm);
-        void UpdatePriority(int taskId, int priorityId);
         void UpdateStatus(int taskId, int statusId);
-        void UpdateCategory(int taskId, int categoryId);
-        AddTaskVm EditTaskView(int taskId);
+        AddTaskVm UpdateTaskView(int taskId);
         int UpdateTask(AddTaskVm taskModel);
+        TaskFiltersVm TaskFiltersView();
     }
 }

@@ -12,8 +12,8 @@ using TaskFlow.Infrastructure;
 namespace TaskFlow.Infrastructure.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20231129112320_fix column name")]
-    partial class fixcolumnname
+    [Migration("20240129124856_init-create")]
+    partial class initcreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -242,6 +242,28 @@ namespace TaskFlow.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Software"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Hardware"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Permission"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Other"
+                        });
                 });
 
             modelBuilder.Entity("TaskFlow.Domain.Model.Comment", b =>
@@ -296,6 +318,28 @@ namespace TaskFlow.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Priorities");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Low"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Normal"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "High"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "INSTANT"
+                        });
                 });
 
             modelBuilder.Entity("TaskFlow.Domain.Model.Project", b =>
@@ -374,6 +418,33 @@ namespace TaskFlow.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Statuses");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "New"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "In progress"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Suspensed"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Completed"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "Closed"
+                        });
                 });
 
             modelBuilder.Entity("TaskFlow.Domain.Model.Tag", b =>

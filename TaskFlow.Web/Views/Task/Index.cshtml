@@ -1,62 +1,143 @@
 ﻿@model TaskFlow.Application.ViewModels.Task.ListTaskForListVm
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Tasks";
 }
 
-<h1>All tasks</h1>
+<h1>Tasks</h1>
 
 <p>
-    <a asp-action="AddTask">Create New</a>
-    
-
+    <a asp-action="AddTask" class="btn btn-primary">New</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                Id
-            </th>
-            <th>
-                Name
-            </th>
-            <th>
-                Category
-            </th>
-            <th>
-                Priority
-            </th>
-            <th>
-                Status
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var task in Model.Tasks) {
-        <tr>
-            <td>
-                    @Html.DisplayFor(modelItem => task.Id)
-            </td>
-             <td>
-                    @*@Html.DisplayFor(modelItem => task.Name)*@
-                    @Html.ActionLink(task.Name, "ViewTaskDetails", "Task", new { taskId = task.Id }, null)
-            </td>
-             <td>
-                    @Html.DisplayFor(modelItem => task.Category.Name)
-            </td>          
-            <td>
-                    @Html.DisplayFor(modelItem => task.Priority.Name)
-            </td>    
-            <td>
-                    @Html.DisplayFor(modelItem => task.Status.Name)
-            </td>
-            <td>
-                    @Html.ActionLink("Edit", "EditTask", new {  taskId = task.Id }) |
-                    @Html.ActionLink("Details", "ViewTaskDetails", new {  taskId = task.Id }) |
-                    @Html.ActionLink("Remove", "Remove", new { taskId = task.Id })
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<form asp-action="Index" asp-controller="Task" method="post">
+
+    <div class="filters-section" id="filters" style="display:none">
+        <div class="filter">
+            <label>Project</label>
+            <select multiple class="filter-list" name="taskFiltersVm.ProjectId" asp-for="TaskFilters.ProjectId" id="taskFiltersVm.ProjectId">
+                @foreach (var project in Model.TaskFilters.Projects)
+                {
+                        <option value="@project.Id">@project.Name</option>
+                }
+            </select>
+            <label >Category</label>
+            <select multiple name="taskFiltersVm.CategoriesId" asp-for="TaskFilters.CategoriesId" id="taskFiltersVm.CategoriesId">
+                @foreach (var categories in Model.TaskFilters.Categories)
+                {
+                    <option value="@categories.Id">@categories.Name</option>
+                }
+            </select>
+       
+            <label>Status</label>
+            <select multiple class="filter-list" name="taskFiltersVm.StatusesId" asp-for="TaskFilters.StatusesId" id="taskFiltersVm.StatusesId">
+                @foreach (var statuses in Model.TaskFilters.Statuses)
+                {
+                    <option value="@statuses.Id">@statuses.Name</option>
+                }
+            </select>
+
+
+            <label >Priority</label>
+            <select multiple name="taskFiltersVm.PrioritiesId" asp-for="TaskFilters.PrioritiesId" id="taskFiltersVm.PrioritiesId">
+                @foreach (var priorities in Model.TaskFilters.Priorities)
+                {
+                    <option value="@priorities.Id">@priorities.Name</option>
+                }
+            </select>
+
+
+        </div>
+
+    </div>
+    <input type="text" asp-for="SearchString" name="searchString" class="searchString" id="searchString" />
+    <input type="submit" value="Search" class="btn btn-search" />
+    <a class=" btn btn-primary" onclick="javascript:toggleDiv('filters')">Advanced</a>
+
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th >
+                    Id
+                </th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Category
+                </th>
+                <th>
+                    Priority
+                </th>
+                <th>
+                    Status
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var task in Model.Tasks)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => task.Id)
+                    </td>
+                    <td>
+                        @*@Html.DisplayFor(modelItem => task.Name)*@
+                        @Html.ActionLink(task.Name, "ViewTaskDetails", "Task", new { taskId = task.Id }, null)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => task.Category.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => task.Priority.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => task.Status.Name)
+                    </td>
+                    <td>
+                        @if (task.Status.Name != "Closed")
+                        {
+                            @Html.ActionLink("Edit", "EditTask", new { taskId = task.Id })
+                            ;
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <input type="hidden" name="pageNo" id="pageNo" />
+    <input type="hidden" name="pageSize" id="pageSize" value="10" />
+    <div>
+        <table>
+            <tr>
+                <td>
+                    @if (Model.CurrentPage > 1)
+                    {
+                        <a href="javascript:pagerClick(@Model.CurrentPage - 1)">back</a>
+                    }
+                </td>
+                @for (int i = 1; i <= Math.Ceiling(Model.Count / (double)Model.PageSize); i++)
+                {
+                    <td>
+                        @if (i != Model.CurrentPage)
+                        {
+                            <a href="javascript:pagerClick(@i)">@i</a>
+                        }
+                        else
+                        {
+                            <span>@i</span>
+                        }
+                    </td>
+                }
+                <td>
+                    @if (Model.CurrentPage < Math.Ceiling(Model.Count / (double)Model.PageSize))
+                    {
+                        <a href="javascript:pagerClick(@Model.CurrentPage + 1)">next</a>
+                    }
+                </td>
+            </tr>
+        </table>
+    </div>
+</form>
+

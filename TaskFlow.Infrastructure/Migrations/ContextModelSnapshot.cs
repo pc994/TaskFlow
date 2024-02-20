@@ -357,14 +357,6 @@ namespace TaskFlow.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Projects");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            IsActive = true,
-                            Name = "Corp"
-                        });
                 });
 
             modelBuilder.Entity("TaskFlow.Domain.Model.ProjectDetail", b =>

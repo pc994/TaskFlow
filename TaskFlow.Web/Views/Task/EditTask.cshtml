@@ -1,7 +1,7 @@
 ﻿@model TaskFlow.Application.ViewModels.Task.AddTaskVm
 
 @{
-    ViewData["Title"] = "EditTask";
+    ViewData["Title"] = "Modify task";
 }
 
 <h4>
@@ -9,83 +9,106 @@
     @Html.DisplayFor(model => model.Id)
 </h4>
 
-<h2>
-    @Html.DisplayNameFor(model => model.Name) :
-    @Html.DisplayFor(model => model.Name)
-</h2>
-<hr />
+
+
+
 <div class="row">
+    <div class="div-with-buttons">
+        <h2>
+            @Html.DisplayNameFor(model => model.Name) :
+            @Html.DisplayFor(model => model.Name)
+        </h2>
+        <a asp-action="index" class="btn btn-close"></a>
+    </div>
+    <hr />
+
     <div class="col-md-4">
+
         <form asp-action="EditTask">
+
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <input asp-for="Id" type="hidden" />
             </div>
             <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
+                <label asp-for="Name" class="control-label">Name </label>
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
+                <label asp-for="Description" class="control-label">Description </label>
                 <TextArea asp-for="Description" class="form-control" rows="10"></TextArea>
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CategoryId" class="control-label"></label>
+                <label asp-for="CategoryId" class="control-label">Category </label>
                 <select name="CategoryId">
-                    @foreach(var category in Model.Categories)
+                    @foreach (var category in Model.Categories)
                     {
-                        <option value="@category.Id">@category.Name</option>
+                        if (category.Id == Model.CategoryId)
+                        {
+                            <option value="@category.Id" selected>@category.Name</option>
+                        }
+                        else
+                        {
+                            <option value="@category.Id">@category.Name</option>
+                        }
                     }
                 </select>
             </div>
             <div class="form-group">
-                <label asp-for="PriorityId" class="control-label"></label>
+                <label asp-for="PriorityId" class="control-label">Priority </label>
                 <select name="PriorityId">
                     @foreach (var priority in Model.Priorities)
                     {
-                        <option value="@priority.Id">@priority.Name</option>
+                        if (priority.Id == Model.PriorityId)
+                        {
+                            <option value="@priority.Id" selected>@priority.Name</option>
+                        }
+                        else
+                        {
+                            <option value="@priority.Id">@priority.Name</option>
+                        }
                     }
                 </select>
             </div>
             <div class="form-group form-check">
                 <label class="form-check-label">
-                    <input class="form-check-input" asp-for="IsPublic" /> @Html.DisplayNameFor(model => model.IsPublic)
+                    <input class="form-check-input" asp-for="IsPublic" /> Is public
                 </label>
             </div>
             <div class="form-group">
-                <label asp-for="ProjectId" class="control-label"></label>
-                <select name="ProjectId">
-                    @foreach (var project in Model.Projects)
+                <input asp-for="ProjectId" type="hidden" />
+            </div>
+            <div class="form-group">
+                <label asp-for="StatusId" class="control-label">Status </label>
+                <select name="StatusId">
+                    @foreach (var status in Model.Statuses)
                     {
-                        <option value="@project.Id">@project.Name</option>
+                        @if (status.Id == Model.StatusId)
+                        {
+                            <option value="@status.Id" selected>@status.Name</option>
+                        }
+                        else
+                        {
+                            <option value="@status.Id">@status.Name</option>
+                        }
                     }
                 </select>
             </div>
-            <div class="form-group">
-                <label asp-for="StatusId" class="control-label"></label>
-                <select name="StatusId">
-                @foreach (var status in Model.Statuses)
-                {
-                        <option value="@status.Id">@status.Name</option>
-                }
-                </select>
-            </div>
-@*            <div class="form-group">
-                <label asp-for="AssignedTo" class="control-label"></label>
-                <input asp-for="AssignedTo" class="form-control" />
-                <span asp-validation-for="AssignedTo" class="text-danger"></span>
+            @*            <div class="form-group">
+            <label asp-for="AssignedTo" class="control-label"></label>
+            <input asp-for="AssignedTo" class="form-control" />
+            <span asp-validation-for="AssignedTo" class="text-danger"></span>
             </div>*@
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
+                <a asp-action="ConfirmClose" asp-route-taskId="@Model.Id" class="btn btn-create">Close task</a>
             </div>
         </form>
     </div>
 </div>
-
 <div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {

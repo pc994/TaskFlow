@@ -1,29 +1,10 @@
-html {
-  font-size: 14px;
+
+
+.div-with-buttons {
+    display: flex;
+    justify-content: space-between;
 }
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
-}
-
-body {
-  margin-bottom: 60px;
-}
-.btn-update {
-    color: white;
-    background-color: #ee6300;
-    border: none;
-    border-radius:2px;
-    position: relative;
+.div-with-buttons .btn-close {
+    margin-left: auto;
 }

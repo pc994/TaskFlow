@@ -1,0 +1,59 @@
+﻿@model TaskFlow.Application.ViewModels.Project.AddProjectVm
+
+@{
+    ViewData["Title"] = "Add project";
+}
+
+<h1>New project</h1>
+
+<hr />
+<div class="row">
+
+    <div class="div-with-buttons">
+
+        <h4>Enter project details</h4>
+        <a asp-action="index" class="btn btn-close"></a>
+
+    </div>
+    <div class="col-md-4">
+        <form asp-action="AddProject">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <input asp-for="Id" type="hidden">
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProjectDetail.CompanyName" class="control-label">Company name</label>
+                <input asp-for="ProjectDetail.CompanyName" class="form-control" />
+                <span asp-validation-for="ProjectDetail.CompanyName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProjectDetail.City" class="control-label">City</label>
+                <input asp-for="ProjectDetail.City" class="form-control" />
+                <span asp-validation-for="ProjectDetail.City" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProjectDetail.CEOName" class="control-label">CEO name</label>
+                <input asp-for="ProjectDetail.CEOName" class="form-control" />
+                <span asp-validation-for="ProjectDetail.CEOName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProjectDetail.ZipCode" class="control-label">Zip Code</label>
+                <input asp-for="ProjectDetail.ZipCode" class="form-control" />
+                <span asp-validation-for="ProjectDetail.ZipCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProjectDetail.StartProject" class="control-label">Start date</label>
+                <input asp-for="ProjectDetail.StartProject" type="date" class="form-control" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                <span asp-validation-for="ProjectDetail.StartProject" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Add" class="btn btn-primary" style="margin-top:20px" />
+            </div>
+        </form>
+    </div>
+</div>

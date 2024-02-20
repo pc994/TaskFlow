@@ -1,0 +1,67 @@
+﻿@model TaskFlow.Application.ViewModels.Task.ListTaskForListVm
+@{
+    ViewData["Title"] = "List";
+
+}}
+
+<div style="text-align: center">
+    <h4>Warning</h4>
+    <h6>The project contains open tasks. If you end the project, all open tasks will be closed! Check out the list below. </h6>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Id
+                </th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Category
+                </th>
+                <th>
+                    Priority
+                </th>
+                <th>
+                    Status
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var task in Model.Tasks)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => task.Id)
+                    </td>
+                    <td>
+                        @*@Html.DisplayFor(modelItem => task.Name)*@
+                        @Html.ActionLink(task.Name, "TaskPreview", "Task", new { taskId = task.Id })
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => task.Category.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => task.Priority.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => task.Status.Name)
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+    @*     <form asp-action="EndProject" asp-route-projectId="@Model.Id" method="post">
+    <button type="submit" class="btn btn-danger">End project</button>
+    <a asp-action="ViewProjectDetails" asp-route-projectId="@Model.Id" class="btn btn-secondary">Cancel</a>
+    </form> *@
+    <h5>Are you sure you want to finish the project and close all open tasks for that project?</h5>
+    <form asp-action="EndProject" asp-route-projectId="@ViewBag.ProjectId" method="post">
+        <button type="submit" class="btn btn-danger">End project</button>
+        <a asp-action="index" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+
+

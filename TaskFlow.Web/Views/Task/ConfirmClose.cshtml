@@ -1,0 +1,16 @@
+﻿@model TaskFlow.Application.ViewModels.Task.TaskDetailsVm
+@{
+    ViewData["Title"] = "Confirm close task";
+}
+
+
+<div style="text-align: center">
+    <h4>Are you sure you want to close the task: @Model.Name</h4>
+    <h5>This action can't be undone.</h5>
+
+    <form asp-action="Close" asp-route-taskId="@Model.Id" method="post">
+        <input asp-for="StatusId" value="5" type="hidden">
+        <button type="submit" class="btn btn-danger">Close task</button>
+        <a asp-action="index" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>

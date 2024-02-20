@@ -1,0 +1,15 @@
+﻿@model TaskFlow.Application.ViewModels.Project.ProjectDetailsVm
+@{
+    ViewData["Title"] = "Confirm end project";
+}
+
+
+<div style="text-align: center">
+    <h4>Are you sure you want to end the project: @Model.Name</h4>
+    <h5>This action can't be undone.</h5>
+
+    <form asp-action="EndProject" asp-route-projectId="@Model.Id" method="post">
+        <button type="submit" class="btn btn-danger">End project</button>
+        <a asp-action="index" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>

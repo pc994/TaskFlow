@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace TaskFlow.Infrastructure.Migrations
 {
     /// <inheritdoc />
@@ -56,7 +58,7 @@ namespace TaskFlow.Infrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Naem = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -361,6 +363,40 @@ namespace TaskFlow.Infrastructure.Migrations
                         principalTable: "Tasks",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "Categories",
+                columns: new[] { "Id", "Name" },
+                values: new object[,]
+                {
+                    { 1, "Software" },
+                    { 2, "Hardware" },
+                    { 3, "Permission" },
+                    { 4, "Other" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Priorities",
+                columns: new[] { "Id", "Name" },
+                values: new object[,]
+                {
+                    { 1, "Low" },
+                    { 2, "Normal" },
+                    { 3, "High" },
+                    { 4, "INSTANT" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Statuses",
+                columns: new[] { "Id", "Name" },
+                values: new object[,]
+                {
+                    { 1, "New" },
+                    { 2, "In progress" },
+                    { 3, "Suspensed" },
+                    { 4, "Completed" },
+                    { 5, "Closed" }
                 });
 
             migrationBuilder.CreateIndex(

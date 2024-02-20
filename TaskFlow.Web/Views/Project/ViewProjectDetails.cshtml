@@ -1,0 +1,87 @@
+﻿@model TaskFlow.Application.ViewModels.Project.ProjectDetailsVm
+
+@{
+    ViewData["Title"] = "Project details";
+}
+
+<div>
+    <h4>
+        @Html.DisplayFor(model => model.Name)
+    </h4>
+    <div class="div-with-buttons">
+        @if (Model.IsActive == false)
+        {
+            <h6>Project is finished. No actions available. </h6>
+            <a asp-action="ViewInactiveProjects" class="btn btn-close"></a>
+        }
+        else
+        {
+            <a asp-action="UpdateProject" asp-route-projectId="@Model.Id" class="btn btn-info">Modify</a>
+            <a asp-action="ProjectToEnd" asp-route-projectId="@Model.Id" class="btn btn-danger">End project</a>
+            <a asp-action="index" class="btn btn-close"></a>
+        }
+
+    </div>
+    <hr />
+    <dl class="row">
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-2">
+            Company name
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ProjectDetail.CompanyName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ProjectDetail.City)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ProjectDetail.City)
+        </dd>
+        <dt class="col-sm-2">
+            CEO name
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ProjectDetail.CEOName)
+        </dd>
+        <dt class="col-sm-2">
+            Zip code
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ProjectDetail.ZipCode)
+        </dd>
+        <dt class="col-sm-2">
+            Start date
+        </dt>
+        <dd class="col-sm-10">
+            @string.Format("{0:yyyy/MM/dd}", Model.ProjectDetail.StartProject)
+        </dd>
+        @if (Model.IsActive == false)
+        {
+            <dt class="col-sm-2">
+                End date
+            </dt>
+            <dd class="col-sm-10">
+                @string.Format("{0:yyyy/MM/dd}", Model.ProjectDetail.EndProject)
+            </dd>
+        }
+        <dt class="col-sm-2">
+            Total tasks
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TasksCount)
+        </dd>
+    </dl>
+    <hr />
+</div>

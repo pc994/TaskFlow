@@ -47,12 +47,9 @@ namespace TaskFlow.Infrastructure
             var priority3 = new Priority() { Id = 3, Name = "High" };
             var priority4 = new Priority() { Id = 4, Name = "INSTANT" };
 
-            var testProject = new Project() { Id = 1, Name = "Corp", IsActive = true };
-
             modelbuilder.Entity<Category>().HasData(category1, category2, category3, category4);
             modelbuilder.Entity<Status>().HasData(status1, status2, status3, status4, status5);
             modelbuilder.Entity<Priority>().HasData(priority1, priority2, priority3, priority4);
-            modelbuilder.Entity<Project>().HasData(testProject);
 
             base.OnModelCreating(modelbuilder);
             //1:1
@@ -79,9 +76,6 @@ namespace TaskFlow.Infrastructure
                 .HasOne<Tag>(tk => tk.Tag)
                 .WithMany(t => t.TaskTags)
                 .HasForeignKey(tk => tk.TagId);
-
-
-            
         }
     }
 }

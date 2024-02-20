@@ -1,82 +1,89 @@
 ﻿@model TaskFlow.Application.ViewModels.Task.AddTaskVm
-
 @{
-    ViewData["Title"] = "AddTask";
+    ViewData["Title"] = "Add task";
+}
+@if (Model.Projects.Count == 0)
+{
+    <div style="text-align:center">
+        <h5>
+            You must create a project before creating a task!<br />
+        </h5>
+        <a asp-controller="Project" asp-action="AddProject" class="btn btn-primary">Add project</a>
+
+        <a asp-action="index" class="btn btn-secondary">Back</a>
+    </div>
+}
+else
+{
+    <h1>New task</h1>
+    <hr />
+    <div class="row">
+        <div class="div-with-buttons">
+            <h4>Enter task details</h4>
+            <a asp-action="Index" class="btn btn-close"></a>
+        </div>
+        <div class="col-md-4">
+            <form asp-action="AddTask">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input asp-for="Id" type="hidden" />
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Description" class="control-label"></label>
+                    <TextArea asp-for="Description" class="form-control" rows="10"></TextArea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Categories">Select Category:</label>
+                    <select name="CategoryId">
+                        @foreach (var category in Model.Categories)
+                        {
+                            <option value="@category.Id">@category.Name</option>
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Priorities">Select Priority:</label>
+                    <select name="PriorityId">
+                        @foreach (var priorities in Model.Priorities)
+                        {
+                            <option value="@priorities.Id">@priorities.Name</option>
+                        }
+                    </select>
+                </div>
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="IsPublic" /> Is public
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Projects">Select project:</label>
+                    <select name="ProjectId">
+                        @foreach (var projects in Model.Projects)
+                        {
+                            <option value="@projects.Id">@projects.Name</option>
+                        }
+                    </select>
+                </div>
+                @* \/ TO BE IMPLEMENTED AFTER ADDING USER CONFIGURATION \/*@
+                @*          <div class="form-group">
+            <label asp-for="AssignedTo" class="control-label"></label>
+            <input asp-for="AssignedTo" class="form-control" disabled/>
+            <span asp-validation-for="AssignedTo" class="text-danger"></span>
+            </div>*@
+                <div class="form-group">
+                    <input type="submit" value="Add" class="btn btn-primary" style="margin-top:20px" />
+                </div>
+            </form>
+        </div>
+    </div>
 }
 
-<h1>New task</h1>
-
-<h4>Add task details</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="AddTask">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <input asp-for="Id" type="hidden" />
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <TextArea asp-for="Description" class="form-control" rows="10"></TextArea>
-                <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Categories">Select Category:</label>
-
-                <select name="CategoryId">
-                    @foreach (var category in Model.Categories)
-                    {
-                        <option value="@category.Id">@category.Name</option>
-                    }
-                </select>
-            </div>
-            <div class="form-group">
-                <label asp-for="Priorities">Select Priority:</label>
-
-                <select name="PriorityId">
-                    @foreach (var priorities in Model.Priorities)
-                    {
-                        <option value="@priorities.Id">@priorities.Name</option>
-                    }
-                </select>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="IsPublic" /> @Html.DisplayNameFor(model => model.IsPublic)
-                </label>
-            </div>
-            <div class="form-group">
-                <label asp-for="Projects">Select project:</label>
-                <select name="ProjectId">
-                    @foreach (var projects in Model.Projects)
-                    {
-                        <option value="@projects.Id">@projects.Name</option>
-                    }
-                </select>
-            </div>
-            @* \/ TO BE IMPLEMENTED AFTER ADDING USER CONFIGURATION \/*@
-  @*          <div class="form-group">
-                <label asp-for="AssignedTo" class="control-label"></label>
-                <input asp-for="AssignedTo" class="form-control" disabled/>
-                <span asp-validation-for="AssignedTo" class="text-danger"></span>
-            </div>*@
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-@*@*
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 }
-*@*@

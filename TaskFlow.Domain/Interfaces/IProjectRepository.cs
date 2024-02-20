@@ -9,7 +9,12 @@ namespace TaskFlow.Domain.Interfaces
 {
     public interface IProjectRepository
     {
-        int Add(Project project);
         public IQueryable<Project> GetAllActiveProjects();
+        public IQueryable<Project> GetAllInactiveProjects();
+        int AddProject(Project projectDetail);
+        void EndProject(int projectId);
+        Project GetProjectById(int projectId);
+        ProjectDetail GetProjectDetailsById(int projectId);
+        int UpdateProject(Project project);
     }
 }

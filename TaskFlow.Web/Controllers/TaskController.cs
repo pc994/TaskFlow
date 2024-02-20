@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FluentValidation;
+using FluentValidation.AspNetCore;
+using FluentValidation.Results;
+using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using TaskFlow.Application.Interfaces;
 using TaskFlow.Application.Services;
@@ -12,14 +15,32 @@ namespace TaskFlow.Web.Controllers
     public class TaskController : Controller
     {
         private readonly ITaskService _taskService;
+        private readonly IValidator<AddTaskVm> _validator;
 
-        public TaskController(ITaskService taskService)
+        public TaskController(ITaskService taskService, IValidator<AddTaskVm> validator)
         {
             _taskService = taskService;
+            _validator = validator;
         }
+        [HttpGet]
         public IActionResult Index()
         {
-            var model = _taskService.GetAllTasksForList(); 
+            TaskFiltersVm taskFiltersVm = new TaskFiltersVm();
+            var model = _taskService.GetAllActiveTasksForList(10, 1, "", taskFiltersVm);
+            return View(model);
+        }
+        [HttpPost]
+        public IActionResult Index(int pageSize, int? pageNo, string searchString, TaskFiltersVm taskFiltersVm)
+        {
+            if (!pageNo.HasValue)
+            {
+                pageNo = 1;
+            }
+            if (searchString is null)
+            {
+                searchString = String.Empty;
+            }
+            var model = _taskService.GetAllActiveTasksForList(pageSize, pageNo.Value, searchString, taskFiltersVm);
             return View(model);
         }
         [HttpGet]
@@ -41,58 +62,46 @@ namespace TaskFlow.Web.Controllers
             return RedirectToAction("ViewTaskDetails", new { taskId = taskId });
         }
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public IActionResult AddComment(AddCommentVm addComment)
         {
-            //AddCommentValidation validator = new AddCommentValidation();
-            //var validationResult = validator.Validate(addComment);
-            //if (!validationResult.IsValid)
-            //{
-            //    // Obsługa błędów walidacji, np. dodanie błędów do ModelState.
-            //    foreach (var error in validationResult.Errors)
-            //    {
-            //        ModelState.AddModelError(error.PropertyName, error.ErrorMessage);
-            //    }
-
-            //    // Przekierowanie z powrotem do widoku z błędami.
-            //    return View(ViewTaskDetails(1));
-
-
-            //}
-
             var taskId = _taskService.AddComment(addComment);
-            return RedirectToAction("ViewTaskDetails",new {taskId = taskId});
+            return RedirectToAction("ViewTaskDetails", new { taskId = taskId });
         }
-        public IActionResult Remove(int taskId)
+        [HttpGet]
+        public IActionResult ConfirmClose(int taskId)
         {
-            _taskService.RemoveTask(taskId);
+            var model = _taskService.GetTaskDetails(taskId);
+            return View(model);
+        }
+        [HttpPost]
+        public IActionResult Close(int taskId, int statusId)
+        {
+            _taskService.UpdateStatus(taskId, statusId);
             return RedirectToAction("Index");
         }
-        //[HttpGet]
-        //public IActionResult EditTask(int taskId) 
-        //{
-        //    var taskToEdit = _taskService.GetTaskForEdit(taskId);
-        //    return View(taskToEdit); 
-        //}
         [HttpGet]
         public IActionResult EditTask(int taskId)
         {
-            var model = _taskService.EditTaskView(taskId);
-              
+            var model = _taskService.UpdateTaskView(taskId);
             return View(model);
         }
         [HttpPost]
         public IActionResult EditTask(AddTaskVm taskModel)
         {
-            var taskId = _taskService.UpdateTask(taskModel);
-
-            return RedirectToAction("ViewTaskDetails", new { taskId = taskId });
+            _taskService.UpdateTask(taskModel);
+            return RedirectToAction("ViewTaskDetails", new { taskId = taskModel.Id });
         }
         [HttpPost]
         public IActionResult UpdateStatus(int taskId, int statusId)
         {
             _taskService.UpdateStatus(taskId, statusId);
             return RedirectToAction("ViewTaskDetails", new { taskId = taskId });
+        }
+        [HttpGet]
+        public IActionResult TaskPreview(int taskId)
+        {
+            var model = _taskService.GetTaskDetails(taskId);
+            return View(model);
         }
     }
 }

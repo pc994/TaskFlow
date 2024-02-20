@@ -26,7 +26,6 @@ namespace TaskFlow.Application.ViewModels.Task
         public int PriorityId { get; set; }
         public Priority Priority { get; set; }
         public List<TaskPrioritiesForListVm> Priorities { get; set; }
-
         public bool IsPublic { get; set; } = true;
         public int ProjectId { get; set; }
         public TaskFlow.Domain.Model.Project Project { get; set; }
@@ -34,19 +33,17 @@ namespace TaskFlow.Application.ViewModels.Task
         public List<TaskFlow.Domain.Model.Comment> Comments { get; set; }
         public int AssignedToId { get; set; }
 
-
         public void Mapping(Profile profile)
         {
             profile.CreateMap<TaskFlow.Domain.Model.Task, TaskDetailsVm>();
         }
-
         public class TaskDetailsValidation : AbstractValidator<TaskDetailsVm>
         {
             public TaskDetailsValidation()
             {
-                //RuleFor(x => x.AddComment.Content).NotNull()
-                //    .NotEmpty();
-                //RuleFor(x => x.AddComment.Content).Length(2,20);
+                RuleFor(x => x.AddComment.Content).NotNull()
+                    .NotEmpty()
+                    .Length(2, 500);
             }
         }
     }

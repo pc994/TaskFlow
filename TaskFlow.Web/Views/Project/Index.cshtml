@@ -1,0 +1,44 @@
+﻿@model TaskFlow.Application.ViewModels.Project.ListProjectToListVm
+@{
+    ViewData["Title"] = "Projects";
+}
+
+<h1>Projects</h1>
+
+<p>
+    <a asp-action="AddProject" class="btn btn-primary">New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                Nazwa
+            </th>
+            <th>
+
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var project in Model.Projects)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => project.Id)
+                </td>
+                <td>
+                    @Html.ActionLink(project.Name, "ViewProjectDetails", "Project", new { projectId = project.Id }, null)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "UpdateProject", new { projectId = project.Id })
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+<a asp-action="ViewInactiveProjects" class="btn btn-info">Show inactive projects</a>
+

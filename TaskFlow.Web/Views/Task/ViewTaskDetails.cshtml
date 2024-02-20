@@ -1,116 +1,137 @@
 ﻿@model TaskFlow.Application.ViewModels.Task.TaskDetailsVm
 
 @{
-    ViewData["Title"] = "ViewTaskDetails";
+    ViewData["Title"] = "Task details";
 }
-
-
-<div>
+<div class="task-details">
     <h4>
         @Html.DisplayFor(model => model.Name)
     </h4>
+    <div class="div-with-buttons">
+        @if (Model.Status.Name == "Closed")
+        {
+            <h6>Task is closed. No actions available. </h6>
+        }
+        else
+        {
+            <a asp-action="EditTask" asp-route-taskId="@Model.Id" class="btn btn-info">Edit task</a>
+            <a asp-action="ConfirmClose" asp-route-taskId="@Model.Id" class="btn btn-danger">Close task</a>
+        }
+        <a asp-action="Index" class="btn bth-close">X</a>
+    </div>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Id)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Id)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Name)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Name)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Description)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Description)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Status)
         </dt>
-        <dd class = "col-sm-2">
+        <dd class="col-sm-2">
             @Html.DisplayFor(model => model.Status.Name)
         </dd>
         <dd class="col-sm-8">
-            <form asp-action="UpdateStatus">
-                @*         <label asp-for="Priority">Change Priority:</label>*@
-                <select name="statusId">
-                    @foreach (var status in Model.Statuses)
-                    {
-                        <option value="@status.Id">@status.Name</option>
-                    }
-                </select>
-                <input type="hidden" name="taskId" value="@Model.Id" />
-                <button type="submit" class="bDtn-update">Update</button>
-
-            </form>
+            @if (Model.Status.Name != "Closed")
+            {
+                <form asp-action="UpdateStatus">
+                    <select name="statusId">
+                        @foreach (var status in Model.Statuses)
+                        {
+                            <option value="@status.Id">@status.Name</option>
+                        }
+                    </select>
+                    <input type="hidden" name="taskId" value="@Model.Id" />
+                    <button type="submit" class="btn-update">Update</button>
+                </form>
+            }
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Category)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Category.Name)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Priority)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Priority.Name)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IsPublic)
+        <dt class="col-sm-2">
+            Visibility
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IsPublic)
+        <dd class="col-sm-10">
+            @if (Model.IsPublic == true)
+            {
+                <span>Public</span>
+            }
+            else
+            {
+                <span>Private</span>
+            }
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ProjectId)
+        <dt class="col-sm-2">
+            Project Name
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Project.Name)
         </dd>
     </dl>
 </div>
+<hr />
 <div>
-
-    <label asp-for="Comments">Comments</label>
-        @foreach (var comment in Model.Comments)
-        {
+    @if (Model.Comments.Count > 0)
+    {
+        <label asp-for="Comments"><h5>Comments</h5></label>
+        <hr />
+    }
+    @foreach (var comment in Model.Comments)
+    {
         <p>
-           <dt class="col-sm-2">
-                @comment.CreatedDate 
-           </dt>
-           <dd class="col-sm-10">
+        <dt class="col-sm-2">
+                @comment.CreatedDate
+        </dt>
+        <dd class="col-sm-10">
                 @comment.Content
         </dd>
         </p>
         <hr />
-        }
-    <form asp-action="AddComment">
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    }
+    @if (Model.Status.Name != "Closed")
+    {
+        <form asp-action="AddComment">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-        <input type="hidden" asp-for="AddComment.TaskId" value="@Model.Id"/>
+            <input type="hidden" asp-for="AddComment.TaskId" value="@Model.Id" />
 
-        <div class="form-group">
-            <label asp-for="AddComment.Content">Add comment:</label>
-            <textarea asp-for="AddComment.Content" class="form-control" rows="4"></textarea>
-            <span asp-validation-for="AddComment.Content" class="text-danger"></span>
-            
-       
-        <button type="submit" class="btn btn-primary">Add Comment</button>
-        </div>
+            <div class="form-group">
+                <label asp-for="AddComment.Content">Add comment:</label>
+                <textarea asp-for="AddComment.Content" class="form-control" rows="4"></textarea>
+                <span asp-validation-for="AddComment.Content" class="text-danger"></span>
+                <button type="submit" class="btn btn-primary">Add Comment</button>
+            </div>
 
-    </form>
-
-    @Html.ActionLink("Edit", "EditTask", new { taskId = Model.Id }) |
-    <a asp-action="Index">Back to List</a>
+        </form>
+    }
 </div>
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 }
+

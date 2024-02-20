@@ -1,0 +1,40 @@
+﻿@model TaskFlow.Application.ViewModels.Project.ListProjectToListVm
+
+@{
+    ViewData["Title"] = "Inactive projects";
+}
+
+<h1>Inactive projects</h1>
+@if (Model.Count == 0)
+{
+    <h5>No inactive projects</h5>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Id
+                </th>
+                <th>
+                    Name
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var project in Model.Projects)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => project.Id)
+                    </td>
+                    <td>
+                        @Html.ActionLink(project.Name, "ViewProjectDetails", "Project", new { projectId = project.Id }, null)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+<a asp-action="index" class="btn btn-primary">Back</a>

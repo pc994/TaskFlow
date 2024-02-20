@@ -1,0 +1,81 @@
+﻿@model TaskFlow.Application.ViewModels.Project.AddProjectVm
+
+@{
+    ViewData["Title"] = "Modify project";
+}
+
+<h1>Update Project</h1>
+
+
+<div class="row">
+    <div class="div-with-buttons">
+        <h4>Edit project details</h4>
+
+        <a asp-action="index" class="btn btn-close"></a>
+
+    </div>
+    <hr />
+    <div class="col-md-4">
+        <form asp-action="UpdateProject">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <input asp-for="Id" type="hidden">
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <input asp-for="IsActive" type="hidden" />
+            <input asp-for="ProjectDetail.Id" type="hidden" />
+            <div class="form-group">
+                <label asp-for="ProjectDetail.CompanyName" class="control-label"></label>
+                <input asp-for="ProjectDetail.CompanyName" class="form-control" />
+                <span asp-validation-for="ProjectDetail.CompanyName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProjectDetail.City" class="control-label"></label>
+                <input asp-for="ProjectDetail.City" class="form-control" />
+                <span asp-validation-for="ProjectDetail.City" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProjectDetail.CEOName" class="control-label"></label>
+                <input asp-for="ProjectDetail.CEOName" class="form-control" />
+                <span asp-validation-for="ProjectDetail.CEOName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProjectDetail.ZipCode" class="control-label"></label>
+                <input asp-for="ProjectDetail.ZipCode" class="form-control" />
+                <span asp-validation-for="ProjectDetail.ZipCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProjectDetail.StartProject" class="control-label"></label>
+                <input asp-for="ProjectDetail.StartProject" type="date" class="form-control" />
+                <span asp-validation-for="ProjectDetail.StartProject" class="text-danger"></span>
+            </div>
+            @if (Model.IsActive == false)
+            {
+                <div class="form-group">
+                    <label asp-for="ProjectDetail.EndProject" class="control-label"></label>
+                    <input asp-for="ProjectDetail.EndProject" class="form-control" />
+                    <span asp-validation-for="ProjectDetail.EndProject" class="text-danger"></span>
+                </div>
+            }
+
+
+            <div class="form-group" style="margin-top:20px;">
+                <input type="submit" value="Save" class="btn btn-create" />
+
+                @if (Model.IsActive == true)
+                {
+                    <a asp-action="ProjectToEnd" asp-route-projectId="@Model.Id" class="btn btn-danger">End project</a>
+                }
+            </div>
+
+
+        </form>
+    </div>
+</div>
+
+
+
