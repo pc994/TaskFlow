@@ -16,3 +16,4 @@ function toggleDiv(id) {
         div.style.display = "none";
     }
 }
+

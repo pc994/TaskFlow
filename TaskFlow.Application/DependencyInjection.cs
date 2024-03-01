@@ -12,7 +12,9 @@ using TaskFlow.Application.ViewModels.Comment;
 using TaskFlow.Application.ViewModels.Task;
 using TaskFlow.Domain.Interfaces;
 using static TaskFlow.Application.ViewModels.Comment.AddCommentVm;
+using static TaskFlow.Application.ViewModels.Filter.AddFilterVm;
 using static TaskFlow.Application.ViewModels.Task.AddTaskVm;
+using static TaskFlow.Application.ViewModels.Filter.TaskFiltersVm;
 
 
 namespace TaskFlow.Application
@@ -21,10 +23,11 @@ namespace TaskFlow.Application
     {
         public static IServiceCollection AddApplication(this IServiceCollection services)
         {
-            services.AddTransient<ITaskService, TaskService>();
+            services.AddTransient<ITaskService, TaskService>(); 
             services.AddTransient<IProjectService, ProjectService>();
             services.AddTransient<IValidator<AddTaskVm>, AddTaskValidation>();
             services.AddTransient<IValidator<AddCommentVm>, AddCommentValidation>();
+            //services.AddTransient<IValidator<TaskFiltersVm>, TaskFiltersValidation>();
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             return services;
         }

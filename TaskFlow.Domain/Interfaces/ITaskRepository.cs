@@ -34,5 +34,8 @@ namespace TaskFlow.Domain.Interfaces
         int CountTasksByProjectId(int projectId);
         IQueryable<Task> GetAllTasks();
         IQueryable<T> GetParameters<T>() where T : class;
+        void SaveFilter(Filter filter);
+        IQueryable<Filter> GetUserFilter();
+        Filter GetFilterDetailsByFilterId(int filterId);
     }
 }

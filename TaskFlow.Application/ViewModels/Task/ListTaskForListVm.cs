@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TaskFlow.Application.ViewModels.Project;
+using TaskFlow.Application.ViewModels.Filter;
 
 namespace TaskFlow.Application.ViewModels.Task
 {

@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TaskFlow.Application.ViewModels.Comment;
+using TaskFlow.Application.ViewModels.Filter;
 using TaskFlow.Application.ViewModels.Task;
 
 namespace TaskFlow.Application.Interfaces
 {
     public interface ITaskService
     {
-        ListTaskForListVm GetAllTasksForList();
-        ListTaskForListVm GetAllActiveTasksForList(int pageSize, int pageNo, string searchString, TaskFiltersVm taskFiltersVm);
+        ListTaskForListVm GetTasksForList(int pageSize, int pageNo, string searchString, TaskFiltersVm taskFiltersVm);
         int AddTask(AddTaskVm addTaskVm);
         AddTaskVm AddTaskView();
         TaskDetailsVm GetTaskDetails(int taskId);
@@ -20,6 +20,6 @@ namespace TaskFlow.Application.Interfaces
         void UpdateStatus(int taskId, int statusId);
         AddTaskVm UpdateTaskView(int taskId);
         int UpdateTask(AddTaskVm taskModel);
-        TaskFiltersVm TaskFiltersView();
+        void SaveFilters(TaskFiltersVm filterVm);
     }
 }

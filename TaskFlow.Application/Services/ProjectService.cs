@@ -24,6 +24,7 @@ namespace TaskFlow.Application.Services
             _mapper = mapper;
             _taskRepository = taskRepository;
         }
+
         public int AddProject(AddProjectVm addProjectVm)
         {
             var project = _mapper.Map<Project>(addProjectVm);
@@ -31,11 +32,7 @@ namespace TaskFlow.Application.Services
             var projectId = _projectRepository.AddProject(project);
             return project.Id;
         }
-        public AddProjectVm AddProjectView()
-        {
-            AddProjectVm addProjectVm = new AddProjectVm();
-            return addProjectVm;
-        }
+
         public ListProjectToListVm GetAllActiveProjects()
         {
             var projects = _projectRepository.GetAllActiveProjects().ProjectTo<ProjectForListVm>(_mapper.ConfigurationProvider).ToList();
@@ -46,29 +43,7 @@ namespace TaskFlow.Application.Services
             };
             return listOfProjects;
         }
-        public ProjectDetailsVm GetProjectDetails(int projectId)
-        {
-            var project = _projectRepository.GetProjectById(projectId);
-            var projectDetailsVm = _mapper.Map<ProjectDetailsVm>(project);
-            projectDetailsVm.TasksCount = CountTasksByProjectId(projectId);
-            return projectDetailsVm;
-        }
-        public AddProjectVm UpdateProjectView(int projectId)
-        {
-            var project = GetProjectDetails(projectId);
-            AddProjectVm projectVm = new AddProjectVm();
-            projectVm.Id = project.Id;
-            projectVm.Name = project.Name;
-            projectVm.IsActive = project.IsActive;
-            projectVm.ProjectDetail = project.ProjectDetail;
-            return projectVm;
-        }
-        public int UpdateProject(AddProjectVm addProjectVm)
-        {
-            var project = _mapper.Map<Project>(addProjectVm);
-            var projectId = _projectRepository.UpdateProject(project);
-            return projectId;
-        }
+
         public ListProjectToListVm GetAllInactiveProjects()
         {
             var projects = _projectRepository.GetAllInactiveProjects().ProjectTo<ProjectForListVm>(_mapper.ConfigurationProvider).ToList();
@@ -79,15 +54,38 @@ namespace TaskFlow.Application.Services
             };
             return listOfProjects;
         }
+
+        public ProjectDetailsVm GetProjectDetails(int projectId)
+        {
+            var project = _projectRepository.GetProjectById(projectId);
+            var projectDetailsVm = _mapper.Map<ProjectDetailsVm>(project);
+            projectDetailsVm.TasksCount = CountTasksByProjectId(projectId);
+            return projectDetailsVm;
+        }
+
+        public AddProjectVm UpdateProjectView(int projectId)
+        {
+            var project = GetProjectDetails(projectId);
+            AddProjectVm projectVm = new AddProjectVm();
+            projectVm.Id = project.Id;
+            projectVm.Name = project.Name;
+            projectVm.IsActive = project.IsActive;
+            projectVm.ProjectDetail = project.ProjectDetail;
+            return projectVm;
+        }
+
+        public int UpdateProject(AddProjectVm addProjectVm)
+        {
+            var project = _mapper.Map<Project>(addProjectVm);
+            var projectId = _projectRepository.UpdateProject(project);
+            return projectId;
+        }
+
         public void EndProject(int projectId)
         {
             _projectRepository.EndProject(projectId);
         }
-        private List<TaskForListVm> GetTasksByProjectId(int projectId)
-        {
-            var tasks = _taskRepository.GetTaskByProjectId(projectId).ProjectTo<TaskForListVm>(_mapper.ConfigurationProvider).ToList();
-            return tasks;
-        }
+
         public bool CheckPossibilityEndProject(int projectId)
         {
             var tasks = GetTasksByProjectId(projectId);
@@ -100,6 +98,7 @@ namespace TaskFlow.Application.Services
                 return true;
             }
         }
+
         public ListTaskForListVm GetActiveTasksByProjectId(int projectId)
         {
             var tasks = _taskRepository.GetActiveTasksByProjectId(projectId).ProjectTo<TaskForListVm>(_mapper.ConfigurationProvider).ToList();
@@ -110,15 +109,23 @@ namespace TaskFlow.Application.Services
             };
             return listOfTasks;
         }
+
         public int CountActiveTasksByProjectId(int projectId)
         {
             var count = _taskRepository.CountActiveTasksByProjectId(projectId);
             return count;
         }
+
         public int CountTasksByProjectId(int projectId)
         {
             var count = _taskRepository.CountTasksByProjectId(projectId);
             return count;
+        }
+
+        private List<TaskForListVm> GetTasksByProjectId(int projectId)
+        {
+            var tasks = _taskRepository.GetTaskByProjectId(projectId).ProjectTo<TaskForListVm>(_mapper.ConfigurationProvider).ToList();
+            return tasks;
         }
     }
 }

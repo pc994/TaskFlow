@@ -22,8 +22,6 @@ namespace TaskFlow.Application.ViewModels.Comment
         public DateTime CreatedDate { get; set; }
         public DateTime UpdatedDate { get; set; }
         public bool IsPublic { get; set; } = true;
-        ////1:n
-        //public TaskFlow.Domain.Model.Task Task { get; set; }
 
         public void Mapping(Profile profile)
         {

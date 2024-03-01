@@ -5,51 +5,10 @@
 }
 
 <h1>Tasks</h1>
-
-<p>
-    <a asp-action="AddTask" class="btn btn-primary">New</a>
-</p>
 <form asp-action="Index" asp-controller="Task" method="post">
+    @Html.Partial("_FiltersPartial", Model.TaskFilters)
 
-    <div class="filters-section" id="filters" style="display:none">
-        <div class="filter">
-            <label>Project</label>
-            <select multiple class="filter-list" name="taskFiltersVm.ProjectId" asp-for="TaskFilters.ProjectId" id="taskFiltersVm.ProjectId">
-                @foreach (var project in Model.TaskFilters.Projects)
-                {
-                        <option value="@project.Id">@project.Name</option>
-                }
-            </select>
-            <label >Category</label>
-            <select multiple name="taskFiltersVm.CategoriesId" asp-for="TaskFilters.CategoriesId" id="taskFiltersVm.CategoriesId">
-                @foreach (var categories in Model.TaskFilters.Categories)
-                {
-                    <option value="@categories.Id">@categories.Name</option>
-                }
-            </select>
-       
-            <label>Status</label>
-            <select multiple class="filter-list" name="taskFiltersVm.StatusesId" asp-for="TaskFilters.StatusesId" id="taskFiltersVm.StatusesId">
-                @foreach (var statuses in Model.TaskFilters.Statuses)
-                {
-                    <option value="@statuses.Id">@statuses.Name</option>
-                }
-            </select>
-
-
-            <label >Priority</label>
-            <select multiple name="taskFiltersVm.PrioritiesId" asp-for="TaskFilters.PrioritiesId" id="taskFiltersVm.PrioritiesId">
-                @foreach (var priorities in Model.TaskFilters.Priorities)
-                {
-                    <option value="@priorities.Id">@priorities.Name</option>
-                }
-            </select>
-
-
-        </div>
-
-    </div>
-    <input type="text" asp-for="SearchString" name="searchString" class="searchString" id="searchString" />
+    <input type="text" asp-validation-for="SearchString" asp-for="SearchString" name="searchString" class="searchString" id="searchString" />
     <input type="submit" value="Search" class="btn btn-search" />
     <a class=" btn btn-primary" onclick="javascript:toggleDiv('filters')">Advanced</a>
 
@@ -57,7 +16,7 @@
     <table class="table">
         <thead>
             <tr>
-                <th >
+                <th>
                     Id
                 </th>
                 <th>
@@ -140,4 +99,10 @@
         </table>
     </div>
 </form>
+@* @section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
 
+ *@

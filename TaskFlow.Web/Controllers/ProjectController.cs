@@ -27,7 +27,7 @@ namespace TaskFlow.Web.Controllers
         [HttpGet]
         public IActionResult AddProject()
         {
-            var model = _projectService.AddProjectView();
+            var model = new AddProjectVm();
             return View(model);
         }
         [HttpPost]

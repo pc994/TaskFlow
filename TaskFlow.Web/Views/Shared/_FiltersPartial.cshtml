@@ -1,0 +1,50 @@
+﻿@model TaskFlow.Application.ViewModels.Filter.TaskFiltersVm
+
+<div class="filters-section" id="filters" style="display:none">
+    <label>Your filters: </label>
+    <select name="taskFiltersVm.Id" asp-for="Id" id="selectFilterId">
+        @foreach (var filter in Model.Filters)
+        {
+            <option value="@filter.Id">@filter.Name</option>
+        }
+    </select>
+    <input type="submit" value="Apply" class=" btn btn-primary">
+    <label>Please enter name for your filter</label>
+    <input type="text" name="taskFiltersVm.Name" />
+    <span asp-validation-for="Name" class="text-danger"></span>
+    <button asp-action="CreateFilter" asp-route-taskFilter="Model.TaskFilter" class=" btn btn-primary">Save</button>
+    <div class="filter">
+        <label>Project</label>
+        <select multiple class="filter-list" name="taskFiltersVm.FilterProjectsIds" asp-for="FilterProjectsIds" id="taskFiltersVm.ProjectId">
+            @foreach (var project in Model.Projects)
+            {
+                <option value="@project.Id">@project.Name</option>
+            }
+        </select>
+        <label>Category</label>
+        <select multiple name="taskFiltersVm.FilterCategoriesIds" asp-for="FilterCategoriesIds" id="taskFiltersVm.FilterCategoriesIds">
+            @foreach (var categories in Model.Categories)
+            {
+                <option value="@categories.Id">@categories.Name</option>
+            }
+        </select>
+        <label>Status</label>
+        <select multiple class="filter-list" name="TaskFiltersVm.FilterStatusesIds" asp-for="FilterStatusesIds" id="taskFiltersVm.StatusesId">
+            @foreach (var statuses in Model.Statuses)
+            {
+                <option value="@statuses.Id">@statuses.Name</option>
+            }
+        </select>
+        <label>Priority</label>
+        <select multiple name="taskFiltersVm.FilterPrioritiesIds" asp-for="FilterPrioritiesIds" id="taskFiltersVm.PrioritiesId">
+            @foreach (var priorities in Model.Priorities)
+            {
+                <option value="@priorities.Id">@priorities.Name</option>
+            }
+        </select>
+    </div>
+</div>
+
+
+
+

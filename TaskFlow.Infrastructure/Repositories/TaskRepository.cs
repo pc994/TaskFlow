@@ -101,6 +101,7 @@ namespace TaskFlow.Infrastructure.Repositories
         {
             return _dbContext.Set<T>();
         }
+
         public int GetTaskCategoryIdByName(string name)
         {
             var id = _dbContext.Categories.Where(c => c.Name == name).Select(c => c.Id).ToString();
@@ -174,6 +175,30 @@ namespace TaskFlow.Infrastructure.Repositories
                .Include(t => t.Status)
                .Include(t=>t.Comments)
                .Include(t => t.Priority);
+        }
+
+        public void SaveFilter(Filter filter)
+        {
+            _dbContext.Filters.Add(filter);
+            _dbContext.SaveChanges();
+        }
+        public IQueryable<Filter> GetUserFilter()
+        {
+            return _dbContext.Filters
+                .Include(f => f.FilterProjects)
+                .Include(f => f.FilterPriorities)
+                .Include(f => f.FilterCategories)
+                .Include(f => f.FilterStatuses);
+        }
+
+        public Filter GetFilterDetailsByFilterId(int filterId)
+        {
+            var filter = _dbContext.Filters
+                .Include(f => f.FilterCategories)
+                .Include(f => f.FilterProjects)
+                .Include(f => f.FilterPriorities)
+                .Include(f => f.FilterStatuses).FirstOrDefault(f => f.Id == filterId);
+            return filter;
         }
     }
 }

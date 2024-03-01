@@ -23,10 +23,15 @@ namespace TaskFlow.Infrastructure
         public DbSet<Task> Tasks { get; set; }
         public DbSet<TaskAuditableModel> TaskAuditableModels { get; set; }
         public DbSet<TaskTag> TaskTag { get; set; }
+        public DbSet<Filter> Filters { get; set; }
+        public DbSet<FilterCategory> FilterCategories { get; set; }
+        public DbSet<FilterStatus> FilterStatuses { get; set; }
+        public DbSet<FilterPriority> FilterPriorities { get; set; }
+        public DbSet<FilterProject> FilterProjects { get; set; }
 
-        public Context(DbContextOptions options): base(options)
+        public Context(DbContextOptions options) : base(options)
         {
-            
+
         }
         protected override void OnModelCreating(ModelBuilder modelbuilder)
         {
@@ -76,6 +81,72 @@ namespace TaskFlow.Infrastructure
                 .HasOne<Tag>(tk => tk.Tag)
                 .WithMany(t => t.TaskTags)
                 .HasForeignKey(tk => tk.TagId);
+
+            modelbuilder.Entity<FilterCategory>()
+                .HasKey(fk => new { fk.FilterId, fk.CategoryId });
+
+            modelbuilder.Entity<FilterCategory>()
+                .HasOne<Filter>(fk => fk.Filter)
+                .WithMany(f => f.FilterCategories)
+                .HasForeignKey(fk => fk.FilterId);
+
+            modelbuilder.Entity<FilterCategory>()
+                .HasOne<Category>(c => c.Category)
+                .WithMany(fk => fk.FilterCategories)
+                .HasForeignKey(c => c.CategoryId);
+
+            modelbuilder.Entity<FilterStatus>()
+               .HasKey(fk => new { fk.FilterId, fk.StatusId });
+
+            modelbuilder.Entity<FilterStatus>()
+                .HasOne<Filter>(fk => fk.Filter)
+                .WithMany(f => f.FilterStatuses)
+                .HasForeignKey(fk => fk.FilterId);
+
+            modelbuilder.Entity<FilterStatus>()
+                .HasOne<Status>(c => c.Status)
+                .WithMany(fk => fk.FilterStatuses)
+                .HasForeignKey(c => c.StatusId);
+
+            modelbuilder.Entity<FilterStatus>()
+              .HasKey(fk => new { fk.FilterId, fk.StatusId });
+
+            modelbuilder.Entity<FilterStatus>()
+                .HasOne<Filter>(fk => fk.Filter)
+                .WithMany(f => f.FilterStatuses)
+                .HasForeignKey(fk => fk.FilterId);
+
+            modelbuilder.Entity<FilterStatus>()
+                .HasOne<Status>(c => c.Status)
+                .WithMany(fk => fk.FilterStatuses)
+                .HasForeignKey(c => c.StatusId);
+
+
+            modelbuilder.Entity<FilterPriority>()
+              .HasKey(fk => new { fk.FilterId, fk.PriorityId });
+
+            modelbuilder.Entity<FilterPriority>()
+                .HasOne<Filter>(fk => fk.Filter)
+                .WithMany(f => f.FilterPriorities)
+                .HasForeignKey(fk => fk.FilterId);
+
+            modelbuilder.Entity<FilterPriority>()
+                .HasOne<Priority>(c => c.Priority)
+                .WithMany(fk => fk.FilterPriorities)
+                .HasForeignKey(c => c.PriorityId);
+
+            modelbuilder.Entity<FilterProject>()
+                .HasKey(fk => new { fk.FilterId, fk.ProjectId });
+
+            modelbuilder.Entity<FilterProject>()
+                .HasOne<Filter>(fk => fk.Filter)
+                .WithMany(f => f.FilterProjects)
+                .HasForeignKey(fk => fk.FilterId);
+
+            modelbuilder.Entity<FilterProject>()
+                .HasOne<Project>(c => c.Project)
+                .WithMany(fk => fk.FilterProjects)
+                .HasForeignKey(c => c.ProjectId);
         }
     }
 }

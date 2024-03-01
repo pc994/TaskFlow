@@ -12,5 +12,7 @@ namespace TaskFlow.Domain.Model
         public string Name { get; set; }
         //1:n
         public ICollection<Task> Tasks { get; set; }
+        //n:n
+        public ICollection<FilterCategory> FilterCategories { get; set; }
     }
 }

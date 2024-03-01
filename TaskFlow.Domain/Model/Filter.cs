@@ -6,12 +6,14 @@ using System.Threading.Tasks;
 
 namespace TaskFlow.Domain.Model
 {
-    public class Priority
+    public class Filter
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        //1:n
-        public ICollection<Task> Tasks { get; set; }
+        //n:n 
+        public ICollection<FilterCategory> FilterCategories { get; set; }
+        public ICollection<FilterStatus> FilterStatuses { get; set; }
         public ICollection<FilterPriority> FilterPriorities { get; set; }
+        public ICollection<FilterProject> FilterProjects { get; set; }
     }
 }

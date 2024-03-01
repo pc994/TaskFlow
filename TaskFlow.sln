@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33502.453
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskFlow.Web", "TaskFlow.Web\TaskFlow.Web.csproj", "{7400A99F-C1F2-4F71-B1B5-038ACE33ED60}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskFlow.Web", "TaskFlow.Web\TaskFlow.Web.csproj", "{7400A99F-C1F2-4F71-B1B5-038ACE33ED60}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{05D0243C-9D03-4E28-888C-679C8774EC7D}"
 EndProject
@@ -15,13 +15,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{41EDDC8D
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{0160D6A6-129F-4BF3-9F64-C9682234938E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskFlow.Application", "TaskFlow.Application\TaskFlow.Application.csproj", "{BD1B4C7E-F426-4E10-BD5D-1721C2E943B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskFlow.Application", "TaskFlow.Application\TaskFlow.Application.csproj", "{BD1B4C7E-F426-4E10-BD5D-1721C2E943B9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskFlow.Domain", "TaskFlow.Domain\TaskFlow.Domain.csproj", "{0ECB1562-EA72-4814-A1C1-C12E3881DCB5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskFlow.Domain", "TaskFlow.Domain\TaskFlow.Domain.csproj", "{0ECB1562-EA72-4814-A1C1-C12E3881DCB5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskFlow.Infrastructure", "TaskFlow.Infrastructure\TaskFlow.Infrastructure.csproj", "{FCC31CA3-7D41-4DDE-BCAB-65618D530926}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskFlow.Infrastructure", "TaskFlow.Infrastructure\TaskFlow.Infrastructure.csproj", "{FCC31CA3-7D41-4DDE-BCAB-65618D530926}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskFlow.Tests", "TaskFlow.Tests\TaskFlow.Tests.csproj", "{C3E7B507-D98C-42BF-8BBB-D8FE7EBD3D06}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskFlow.Tests", "TaskFlow.Tests\TaskFlow.Tests.csproj", "{C3E7B507-D98C-42BF-8BBB-D8FE7EBD3D06}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -12,7 +12,6 @@ namespace TaskFlow.Application.Interfaces
     public interface IProjectService
     {
         int AddProject(AddProjectVm addProjectVm);
-        AddProjectVm AddProjectView();
         ListProjectToListVm GetAllActiveProjects();
         ListProjectToListVm GetAllInactiveProjects();
         ProjectDetailsVm GetProjectDetails(int projectId);

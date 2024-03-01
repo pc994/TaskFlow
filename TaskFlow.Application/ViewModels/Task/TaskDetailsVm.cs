@@ -30,7 +30,7 @@ namespace TaskFlow.Application.ViewModels.Task
         public int ProjectId { get; set; }
         public TaskFlow.Domain.Model.Project Project { get; set; }
         public AddCommentVm AddComment { get; set; }
-        public List<TaskFlow.Domain.Model.Comment> Comments { get; set; }
+        public List<CommentsForListVm> Comments { get; set; }
         public int AssignedToId { get; set; }
 
         public void Mapping(Profile profile)

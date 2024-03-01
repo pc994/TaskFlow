@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using TaskFlow.Application.Interfaces;
 using TaskFlow.Application.Services;
 using TaskFlow.Application.ViewModels.Comment;
+using TaskFlow.Application.ViewModels.Filter;
 using TaskFlow.Application.ViewModels.Task;
 using TaskFlow.Domain.Model;
 using static TaskFlow.Application.ViewModels.Comment.AddCommentVm;
@@ -26,7 +27,7 @@ namespace TaskFlow.Web.Controllers
         public IActionResult Index()
         {
             TaskFiltersVm taskFiltersVm = new TaskFiltersVm();
-            var model = _taskService.GetAllActiveTasksForList(10, 1, "", taskFiltersVm);
+            var model = _taskService.GetTasksForList(10, 1, "", taskFiltersVm);
             return View(model);
         }
         [HttpPost]
@@ -40,9 +41,17 @@ namespace TaskFlow.Web.Controllers
             {
                 searchString = String.Empty;
             }
-            var model = _taskService.GetAllActiveTasksForList(pageSize, pageNo.Value, searchString, taskFiltersVm);
+            var model = _taskService.GetTasksForList(pageSize, pageNo.Value, searchString, taskFiltersVm);
             return View(model);
         }
+        //[HttpPost]
+        //public IActionResult ApplyFilter(TaskFiltersVm taskFiltersVm)
+        //{
+        //    var model = _taskService.ApplyFilter(taskFiltersVm);
+
+        //    return RedirectToAction("Index");
+
+        //}
         [HttpGet]
         public IActionResult ViewTaskDetails(int taskId)
         {
@@ -103,5 +112,17 @@ namespace TaskFlow.Web.Controllers
             var model = _taskService.GetTaskDetails(taskId);
             return View(model);
         }
+
+        public IActionResult CreateFilter(TaskFiltersVm taskFiltersVm)
+        {
+            _taskService.SaveFilters(taskFiltersVm);
+            return RedirectToAction("Index");
+        }
+        
+        //public IActionResult ApplyFilter(int filterId)
+        //{
+        //    var filtervm = _taskService.GetFilterDetailsByFilterId(filterId);
+        //    return RedirectToAction("Index", new {pageSize = 10,pageNo= 1,searchString = "", taskFiltersVm = filtervm });
+        //}
     }
 }
