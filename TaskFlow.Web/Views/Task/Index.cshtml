@@ -9,7 +9,7 @@
     @Html.Partial("_FiltersPartial", Model.TaskFilters)
 
     <input type="text" asp-validation-for="SearchString" asp-for="SearchString" name="searchString" class="searchString" id="searchString" />
-    <input type="submit" value="Search" class="btn btn-search" />
+    <input type="submit" value="Search" class="btn btn-primary" />
     <a class=" btn btn-primary" onclick="javascript:toggleDiv('filters')">Advanced</a>
 
 
